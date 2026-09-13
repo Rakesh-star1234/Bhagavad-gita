@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Bhagavad Gita — by Rakesh Kumar</title>
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕉️</text></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕉️</text></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,25 +27,29 @@ tailwind.config = {
         maroon: '#7A2331',
         maroonDeep: '#5C1A25',
         ink: '#2B1D14',
-        indigo: '#233B5C',
+        indigo: '#233B5C'
       },
       fontFamily: {
         display: ['Martel', 'serif'],
-        sans: ['Hind', 'ui-sans-serif', 'system-ui'],
-      },
-    },
-  },
+        sans: ['Hind', 'ui-sans-serif', 'system-ui']
+      }
+    }
+  }
 };
 </script>
 
 <style>
+
+* {
+  box-sizing: border-box;
+}
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  overflow-x: hidden;
+  transition: background-color .3s, color .3s;
 }
 
 @keyframes riseIn {
@@ -53,6 +57,7 @@ body {
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -60,51 +65,48 @@ body {
 }
 
 .hero-enter {
-  animation: riseIn 0.9s ease-out both;
+  animation: riseIn .9s ease-out both;
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
+@keyframes floatKrishna {
+  0%,100% {
     transform: translateY(0);
   }
-}
 
-.fade-up {
-  animation: fadeUp .5s ease both;
-}
-
-@keyframes pulseSoft {
-  0%,100% {
-    transform: scale(1);
-  }
   50% {
-    transform: scale(1.04);
+    transform: translateY(-8px);
   }
 }
 
-.pulse-soft {
-  animation: pulseSoft 2s infinite;
+.krishna-img {
+  animation: floatKrishna 5s ease-in-out infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-enter,
-  .fade-up,
-  .pulse-soft {
-    animation: none;
+@keyframes pulseGlow {
+  0%,100% {
+    box-shadow: 0 0 0 rgba(225,134,26,0);
   }
+
+  50% {
+    box-shadow: 0 0 35px rgba(225,134,26,.22);
+  }
+}
+
+.glow-card {
+  animation: pulseGlow 4s infinite;
+}
+
+.card-hover {
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(91,40,20,.12);
 }
 
 #toc-list::-webkit-scrollbar {
   width: 6px;
-}
-
-#toc-list::-webkit-scrollbar-track {
-  background: transparent;
 }
 
 #toc-list::-webkit-scrollbar-thumb {
@@ -154,765 +156,959 @@ select:focus-visible {
 }
 
 .feature-card {
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  background: rgba(255,252,246,.94);
+  border: 1px solid rgba(225,134,26,.25);
+  border-radius: 16px;
+  padding: 22px;
+  transition: .25s;
 }
 
 .feature-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(92, 26, 37, .10);
-  border-color: #E1861A;
+  border-color: rgba(122,35,49,.35);
+  box-shadow: 0 12px 28px rgba(92,26,37,.10);
 }
 
-.feeling-btn {
-  transition: all .2s ease;
+.chapter-journey {
+  min-height: 150px;
 }
 
-.feeling-btn:hover {
-  transform: translateY(-3px);
-}
-
-.feeling-btn.selected {
+.journey-number {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #7A2331;
   color: white;
+  font-weight: 700;
+}
+
+.progress-track {
+  height: 8px;
+  background: #E9D8BD;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #E1861A;
+  border-radius: 99px;
+  transition: width .4s;
+}
+
+.quiz-option {
+  width: 100%;
+  text-align: left;
+  padding: 13px 16px;
+  margin-top: 9px;
+  border: 1px solid #E5CDA8;
+  border-radius: 10px;
+  background: #FFFCF6;
+  transition: .2s;
+}
+
+.quiz-option:hover {
   border-color: #7A2331;
+  background: #FBF2E1;
 }
 
-.chapter-progress {
-  background: linear-gradient(
-    90deg,
-    #7A2331 0%,
-    #E1861A 100%
-  );
+.quiz-option.correct {
+  border-color: #15803d;
+  background: #dcfce7;
 }
 
-.modal-bg {
-  background: rgba(43, 29, 20, .65);
-  backdrop-filter: blur(4px);
+.quiz-option.wrong {
+  border-color: #b91c1c;
+  background: #fee2e2;
+}
+
+.dark-mode {
+  background: #15110e !important;
+  color: #f7ead6 !important;
+}
+
+.dark-mode .feature-card,
+.dark-mode .bg-paper,
+.dark-mode .bg-\[\#FBF2E1\] {
+  background: #211a16 !important;
+  color: #f7ead6 !important;
+}
+
+.dark-mode .text-ink,
+.dark-mode .text-ink\/80,
+.dark-mode .text-ink\/70,
+.dark-mode .text-ink\/60 {
+  color: #ead9c2 !important;
+}
+
+.dark-mode .border-saffron\/30,
+.dark-mode .border-saffron\/25,
+.dark-mode .border-saffron\/20 {
+  border-color: rgba(225,134,26,.25) !important;
+}
+
+.dark-mode .quiz-option {
+  background: #211a16;
+  color: #f7ead6;
+  border-color: #604633;
+}
+
+.dark-mode .quiz-option:hover {
+  background: #30231c;
+}
+
+.dark-mode .progress-track {
+  background: #45352a;
+}
+
+.dark-mode input,
+.dark-mode select {
+  background: #211a16 !important;
+  color: white !important;
+}
+
+.dark-mode .toc-row.active {
+  background: #35251d;
+}
+
+.section-title {
+  font-family: Martel, serif;
+  color: #7A2331;
+}
+
+.dark-mode .section-title {
+  color: #f0b15d;
+}
+
+.mobile-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
 }
 
 .hidden-section {
   display: none;
 }
 
-.bookmark-active {
-  color: #B85C0E;
-}
-
-.quiz-option {
-  transition: all .2s ease;
-}
-
-.quiz-option:hover {
-  background: #F3E2C4;
-}
-
-.quiz-option.correct {
-  background: #DCFCE7;
-  border-color: #16A34A;
-}
-
-.quiz-option.wrong {
-  background: #FEE2E2;
-  border-color: #DC2626;
-}
-
-.glass-card {
-  background: rgba(255, 252, 246, .85);
-  backdrop-filter: blur(8px);
-}
-
 </style>
 </head>
 
-<body class="bg-cream text-ink font-sans antialiased">
+<body id="pageBody" class="bg-cream text-ink font-sans antialiased">
 
-<!-- ========================================================= -->
-<!-- HERO -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     TOP NAVIGATION
+========================================================= -->
+
+<nav class="mobile-nav border-b border-saffron/20 bg-paper/90">
+
+<div class="max-w-7xl mx-auto px-4 py-3">
+
+<div class="flex items-center justify-between gap-3">
+
+<div class="font-display text-maroon font-bold">
+🕉️ Bhagavad Gita
+</div>
+
+<div class="hidden md:flex gap-5 text-sm">
+
+<a href="#features" class="hover:text-maroon">Features</a>
+<a href="#library" class="hover:text-maroon">Read</a>
+<a href="#journey" class="hover:text-maroon">Journey</a>
+<a href="#quiz" class="hover:text-maroon">Quiz</a>
+<a href="#dashboard" class="hover:text-maroon">Dashboard</a>
+
+</div>
+
+<button
+id="themeBtn"
+onclick="toggleDarkMode()"
+class="rounded-lg border border-saffron/40 px-3 py-2 text-sm">
+🌙
+</button>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <header class="relative overflow-hidden border-b border-saffron/30">
 
-  <svg
-    class="pointer-events-none select-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/6 opacity-[0.14]"
-    width="900"
-    height="900"
-    viewBox="0 0 900 900"
-    fill="none"
-    aria-hidden="true">
+<div class="max-w-6xl mx-auto px-6 py-12 md:py-20">
 
-    <g stroke="#B85C0E" stroke-width="2">
-      <circle cx="450" cy="380" r="180"/>
-      <circle cx="450" cy="380" r="230"/>
-      <circle cx="450" cy="380" r="280"/>
-    </g>
+<div class="grid md:grid-cols-2 gap-10 items-center">
 
-    <g stroke="#E1861A" stroke-width="3">
-      <g id="rays"></g>
-    </g>
+<div class="hero-enter">
 
-  </svg>
+<p class="text-sm tracking-wide text-maroon/70 font-medium mb-3">
+Ancient wisdom for modern life
+</p>
 
-  <div class="relative max-w-6xl mx-auto px-6 pt-14 pb-16">
+<h1 class="font-display font-800 text-4xl sm:text-6xl text-maroon leading-tight">
+श्रीमद्भगवद्गीता
+</h1>
 
-    <div class="grid lg:grid-cols-2 gap-10 items-center">
+<p class="mt-2 font-display text-xl sm:text-2xl text-saffronDeep">
+The Bhagavad Gita
+</p>
 
-      <!-- LEFT -->
-      <div class="text-center lg:text-left hero-enter">
+<p class="mt-6 text-lg leading-relaxed text-ink/80">
+Eighteen chapters and seven hundred verses of Krishna's wisdom,
+presented in Sanskrit, Hindi and English.
+</p>
 
-        <p class="text-sm tracking-wide text-maroon/70 font-medium mb-3">
-          Chapter and verse, in Sanskrit, Hindi and English
-        </p>
+<div class="mt-7 flex flex-wrap gap-3">
 
-        <h1 class="font-display font-800 text-5xl sm:text-6xl text-maroon leading-tight">
-          श्रीमद्भगवद्गीता
-        </h1>
+<a href="#library"
+class="rounded-lg bg-maroon px-6 py-3 text-paper font-medium hover:bg-maroonDeep">
+📖 Begin Reading
+</a>
 
-        <p class="mt-2 font-display text-xl sm:text-2xl text-saffronDeep">
-          The Bhagavad Gita
-        </p>
+<a href="#wisdomFinder"
+class="rounded-lg border border-maroon px-6 py-3 text-maroon font-medium hover:bg-maroon hover:text-white">
+✨ Find Wisdom
+</a>
 
-        <p class="mt-6 text-ink/80 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
-          Eighteen chapters, seven hundred verses — Krishna's counsel to Arjuna
-          on the field of Kurukshetra.
-        </p>
+</div>
 
-        <blockquote
-          id="hero-verse"
-          class="hidden mt-8 mx-auto lg:mx-0 max-w-lg border-l-2 border-saffron pl-4 text-left">
+<div class="mt-6 flex gap-6 text-sm">
 
-          <p
-            id="hero-verse-text"
-            class="font-display text-ink/90 devanagari-line">
-          </p>
+<div>
+<strong id="streakHero">0</strong>
+<br>
+<span class="text-ink/50">Day Streak</span>
+</div>
 
-          <footer
-            id="hero-verse-ref"
-            class="mt-2 text-sm text-maroon/70">
-          </footer>
+<div>
+<strong id="bookmarkHero">0</strong>
+<br>
+<span class="text-ink/50">Bookmarks</span>
+</div>
 
-        </blockquote>
+<div>
+<strong>18</strong>
+<br>
+<span class="text-ink/50">Chapters</span>
+</div>
 
-        <div class="mt-8 flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3">
+</div>
 
-          <a
-            href="#library"
-            class="inline-flex items-center rounded-md bg-maroon px-6 py-3 text-paper font-medium hover:bg-maroonDeep transition-colors">
-            📖 Begin Reading
-          </a>
-
-          <button
-            id="dailyHeroBtn"
-            class="rounded-md border border-maroon px-5 py-3 text-sm font-medium text-maroon hover:bg-maroon hover:text-paper transition-colors">
-            ✨ Today's Wisdom
-          </button>
-
-        </div>
-
-      </div>
+</div>
 
 
-      <!-- RIGHT IMAGE -->
-      <div class="flex justify-center hero-enter">
+<div class="flex justify-center">
 
-        <div class="relative w-full max-w-md">
+<div class="relative">
 
-          <div class="absolute -inset-3 rounded-3xl bg-saffron/10 rotate-2"></div>
+<div class="absolute inset-0 rounded-3xl bg-saffron/20 blur-3xl"></div>
 
-          <div class="relative overflow-hidden rounded-3xl border-4 border-paper shadow-2xl bg-paper">
+<img
+id="heroImage"
+src="images/krishna-arjuna.png"
+alt="Krishna and Arjuna"
+class="relative krishna-img w-full max-w-md rounded-3xl shadow-2xl border-4 border-paper object-cover"
+onerror="imageFallback(this)"
+>
 
-            <img
-              id="heroImage"
-              src="images/krishna-arjuna.png"
-              alt="Krishna and Arjuna"
-              class="w-full aspect-[4/3] object-cover"
-              onerror="imageFallback(this)"
-            />
+</div>
 
-          </div>
+</div>
 
-          <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-paper border border-saffron/30 rounded-full px-6 py-2 shadow-lg whitespace-nowrap">
-            🕉️ <span class="text-maroon font-medium">योगः कर्मसु कौशलम्</span>
-          </div>
+</div>
 
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- SEARCH -->
-    <div class="mt-14 flex justify-center">
-
-      <form
-        id="search-form"
-        class="flex flex-col sm:flex-row items-center gap-2"
-        role="search">
-
-        <label
-          for="search-input"
-          class="sr-only">
-          Chapter and verse
-        </label>
-
-        <input
-          id="search-input"
-          type="text"
-          inputmode="numeric"
-          placeholder="Jump to a verse — e.g. 2.47"
-          class="w-64 rounded-md border border-saffron/50 bg-paper px-4 py-3 text-sm placeholder:text-ink/40 focus:border-maroon"
-        />
-
-        <button
-          type="submit"
-          class="rounded-md border border-maroon px-5 py-3 text-sm font-medium text-maroon hover:bg-maroon hover:text-paper transition-colors">
-          Go
-        </button>
-
-      </form>
-
-    </div>
-
-    <p
-      id="search-hint"
-      class="mt-2 text-xs text-ink/50 text-center h-4">
-    </p>
-
-  </div>
+</div>
 
 </header>
 
 
-<!-- ========================================================= -->
-<!-- WISDOM FINDER -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     DAILY WISDOM
+========================================================= -->
 
-<section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+<section class="max-w-6xl mx-auto px-4 py-10">
 
-  <div class="text-center mb-8">
+<div class="feature-card glow-card">
 
-    <p class="text-sm uppercase tracking-widest text-saffronDeep font-semibold">
-      Krishna's Wisdom
-    </p>
+<div class="flex items-center justify-between flex-wrap gap-3">
 
-    <h2 class="font-display text-3xl text-maroon mt-2">
-      What are you feeling today?
-    </h2>
+<div>
 
-    <p class="mt-3 text-ink/60 max-w-2xl mx-auto">
-      Choose your feeling and discover a Bhagavad Gita verse related to it.
-    </p>
+<p class="text-sm text-saffronDeep font-semibold">
+☀️ TODAY'S WISDOM
+</p>
 
-  </div>
+<h2 class="font-display text-2xl text-maroon mt-1">
+Daily Gita Verse
+</h2>
 
+</div>
 
-  <div
-    id="feelingGrid"
-    class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+<button
+onclick="loadDailyVerse()"
+class="rounded-lg border border-maroon px-4 py-2 text-sm text-maroon">
+New Verse
+</button>
 
-    <button
-      class="feeling-btn feature-card border border-saffron/30 bg-paper rounded-xl p-5 text-center"
-      data-feeling="confused">
+</div>
 
-      <div class="text-3xl">🤔</div>
-      <div class="mt-2 font-semibold text-maroon">Confused</div>
+<div id="dailyVerseBox" class="mt-6">
+<p class="text-ink/50">
+Loading today's wisdom...
+</p>
+</div>
 
-    </button>
-
-
-    <button
-      class="feeling-btn feature-card border border-saffron/30 bg-paper rounded-xl p-5 text-center"
-      data-feeling="sad">
-
-      <div class="text-3xl">😔</div>
-      <div class="mt-2 font-semibold text-maroon">Sad</div>
-
-    </button>
-
-
-    <button
-      class="feeling-btn feature-card border border-saffron/30 bg-paper rounded-xl p-5 text-center"
-      data-feeling="angry">
-
-      <div class="text-3xl">😡</div>
-      <div class="mt-2 font-semibold text-maroon">Angry</div>
-
-    </button>
-
-
-    <button
-      class="feeling-btn feature-card border border-saffron/30 bg-paper rounded-xl p-5 text-center"
-      data-feeling="stressed">
-
-      <div class="text-3xl">😰</div>
-      <div class="mt-2 font-semibold text-maroon">Stressed</div>
-
-    </button>
-
-
-    <button
-      class="feeling-btn feature-card border border-saffron/30 bg-paper rounded-xl p-5 text-center"
-      data-feeling="fear">
-
-      <div class="text-3xl">😨</div>
-      <div class="mt-2 font-semibold text-maroon">Fear</div>
-
-    </button>
-
-
-    <button
-      class="feeling-btn feature-card border border-saffron/30 bg-paper rounded-xl p-5 text-center"
-      data-feeling="motivation">
-
-      <div class="text-3xl">🔥</div>
-      <div class="mt-2 font-semibold text-maroon">Motivation</div>
-
-    </button>
-
-  </div>
-
-
-  <div
-    id="wisdomResult"
-    class="hidden mt-8 bg-paper border border-saffron/30 rounded-2xl p-6 sm:p-8 shadow-sm">
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- ========================================================= -->
-<!-- DAILY WISDOM + STREAK -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     FEATURES
+========================================================= -->
 
-<section class="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+<section id="features" class="max-w-7xl mx-auto px-4 py-10">
 
-  <div class="grid md:grid-cols-2 gap-6">
+<h2 class="section-title text-3xl mb-3">
+Explore Gita Wisdom
+</h2>
 
-    <!-- DAILY -->
-    <div
-      class="feature-card bg-paper border border-saffron/30 rounded-2xl p-6">
-
-      <div class="flex items-center justify-between">
-
-        <div>
-          <p class="text-xs uppercase tracking-widest text-saffronDeep font-semibold">
-            Daily Wisdom
-          </p>
-
-          <h3 class="font-display text-2xl text-maroon mt-1">
-            Today's Shloka
-          </h3>
-        </div>
-
-        <span class="text-3xl">🌅</span>
-
-      </div>
-
-      <div id="dailyVerseBox" class="mt-5">
-
-        <p class="text-ink/40 animate-pulse">
-          Loading today's wisdom...
-        </p>
-
-      </div>
-
-      <button
-        id="dailyReadBtn"
-        class="mt-5 text-sm text-maroon font-semibold hover:underline">
-        Read full verse →
-      </button>
-
-    </div>
+<p class="text-ink/60 mb-7">
+Tools designed to help you connect the Gita with everyday life.
+</p>
 
 
-    <!-- STREAK -->
-    <div
-      class="feature-card bg-paper border border-saffron/30 rounded-2xl p-6">
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-      <div class="flex items-center justify-between">
+<div class="feature-card">
 
-        <div>
-          <p class="text-xs uppercase tracking-widest text-saffronDeep font-semibold">
-            Your Journey
-          </p>
+<div class="text-3xl">❤️</div>
 
-          <h3 class="font-display text-2xl text-maroon mt-1">
-            Reading Streak
-          </h3>
-        </div>
+<h3 class="font-display text-xl text-maroon mt-3">
+Favorites
+</h3>
 
-        <span class="text-3xl pulse-soft">🔥</span>
+<p class="text-sm text-ink/60 mt-2">
+Save verses that are meaningful to you.
+</p>
 
-      </div>
+<button
+onclick="showFavorites()"
+class="mt-4 text-sm text-maroon font-semibold">
+View Favorites →
+</button>
 
-      <div class="mt-6 flex items-end gap-3">
+</div>
 
-        <span
-          id="streakNumber"
-          class="text-5xl font-bold text-maroon">
-          0
-        </span>
 
-        <span class="text-ink/60 mb-2">
-          day streak
-        </span>
+<div class="feature-card">
 
-      </div>
+<div class="text-3xl">🎯</div>
 
-      <p
-        id="streakMessage"
-        class="mt-3 text-ink/60">
-        Start reading today to begin your journey.
-      </p>
+<h3 class="font-display text-xl text-maroon mt-3">
+Daily Challenge
+</h3>
 
-      <div class="mt-5 h-3 bg-cream rounded-full overflow-hidden">
+<p class="text-sm text-ink/60 mt-2">
+Complete a small Gita challenge every day.
+</p>
 
-        <div
-          id="streakBar"
-          class="h-full chapter-progress rounded-full"
-          style="width:0%">
-        </div>
+<a href="#challenge"
+class="inline-block mt-4 text-sm text-maroon font-semibold">
+Start Challenge →
+</a>
 
-      </div>
+</div>
 
-      <p class="mt-2 text-xs text-ink/40">
-        Keep reading every day.
-      </p>
 
-    </div>
+<div class="feature-card">
 
-  </div>
+<div class="text-3xl">🧠</div>
+
+<h3 class="font-display text-xl text-maroon mt-3">
+Gita Quiz
+</h3>
+
+<p class="text-sm text-ink/60 mt-2">
+Test your understanding with different levels.
+</p>
+
+<a href="#quiz"
+class="inline-block mt-4 text-sm text-maroon font-semibold">
+Take Quiz →
+</a>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="text-3xl">🤖</div>
+
+<h3 class="font-display text-xl text-maroon mt-3">
+Ask Krishna
+</h3>
+
+<p class="text-sm text-ink/60 mt-2">
+Get practical guidance inspired by Gita teachings.
+</p>
+
+<a href="#askKrishna"
+class="inline-block mt-4 text-sm text-maroon font-semibold">
+Ask →
+</a>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- ========================================================= -->
-<!-- SMART TOPIC SEARCH -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     WISDOM FINDER
+========================================================= -->
 
-<section class="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+<section id="wisdomFinder" class="max-w-6xl mx-auto px-4 py-10">
 
-  <div class="bg-maroon rounded-2xl p-7 sm:p-9 text-paper">
+<div class="feature-card">
 
-    <div class="grid lg:grid-cols-[1fr_420px] gap-7 items-center">
+<h2 class="section-title text-3xl">
+✨ What are you feeling?
+</h2>
 
-      <div>
+<p class="text-ink/60 mt-2">
+Choose your situation and discover a relevant Gita verse.
+</p>
 
-        <p class="text-sm uppercase tracking-widest text-saffron/90 font-semibold">
-          Explore the Gita
-        </p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
 
-        <h2 class="font-display text-3xl mt-2">
-          Find wisdom by topic
-        </h2>
+<button onclick="wisdomFinder('confused')" class="rounded-xl border p-4 hover:bg-saffron/10">
+😕<br><span class="text-sm">Confused</span>
+</button>
 
-        <p class="mt-3 text-paper/70">
-          Search concepts like karma, fear, duty, peace, anger, mind and
-          self-confidence.
-        </p>
+<button onclick="wisdomFinder('sad')" class="rounded-xl border p-4 hover:bg-saffron/10">
+😔<br><span class="text-sm">Sad</span>
+</button>
 
-      </div>
+<button onclick="wisdomFinder('angry')" class="rounded-xl border p-4 hover:bg-saffron/10">
+😡<br><span class="text-sm">Angry</span>
+</button>
 
+<button onclick="wisdomFinder('stressed')" class="rounded-xl border p-4 hover:bg-saffron/10">
+😰<br><span class="text-sm">Stressed</span>
+</button>
 
-      <div>
+<button onclick="wisdomFinder('fear')" class="rounded-xl border p-4 hover:bg-saffron/10">
+😨<br><span class="text-sm">Fear</span>
+</button>
 
-        <div class="flex gap-2">
+<button onclick="wisdomFinder('motivation')" class="rounded-xl border p-4 hover:bg-saffron/10">
+🔥<br><span class="text-sm">Motivation</span>
+</button>
 
-          <input
-            id="topicInput"
-            type="text"
-            placeholder="Try: karma, peace, fear..."
-            class="flex-1 rounded-lg px-4 py-3 text-ink bg-paper outline-none"
-          />
+<button onclick="wisdomFinder('peace')" class="rounded-xl border p-4 hover:bg-saffron/10">
+🕊️<br><span class="text-sm">Peace</span>
+</button>
 
-          <button
-            id="topicSearchBtn"
-            class="rounded-lg bg-saffron px-5 py-3 font-semibold text-white hover:bg-saffronDeep transition">
-            Search
-          </button>
+<button onclick="wisdomFinder('failure')" class="rounded-xl border p-4 hover:bg-saffron/10">
+💔<br><span class="text-sm">Failure</span>
+</button>
 
-        </div>
+</div>
 
-        <div
-          id="topicResults"
-          class="mt-4 text-sm">
-        </div>
+<div id="wisdomResult" class="mt-6"></div>
 
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- ========================================================= -->
-<!-- 18 CHAPTER JOURNEY -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     GITA FOR REAL LIFE
+========================================================= -->
 
-<section class="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+<section class="max-w-6xl mx-auto px-4 py-10">
 
-  <div class="text-center mb-8">
+<h2 class="section-title text-3xl mb-3">
+🌱 Gita for Real Life
+</h2>
 
-    <p class="text-sm uppercase tracking-widest text-saffronDeep font-semibold">
-      Your Gita Journey
-    </p>
+<p class="text-ink/60 mb-6">
+See how Gita ideas can be applied to common situations.
+</p>
 
-    <h2 class="font-display text-3xl text-maroon mt-2">
-      18 Chapters
-    </h2>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-    <p class="mt-3 text-ink/60">
-      Explore the complete journey from Arjuna's confusion to Krishna's wisdom.
-    </p>
+<button onclick="realLife('exam')" class="feature-card text-left">
+📚
+<h3 class="font-bold text-maroon mt-2">Exam Stress</h3>
+<p class="text-sm text-ink/60">When studies feel overwhelming.</p>
+</button>
 
-  </div>
+<button onclick="realLife('career')" class="feature-card text-left">
+💼
+<h3 class="font-bold text-maroon mt-2">Career Confusion</h3>
+<p class="text-sm text-ink/60">When you don't know what path to choose.</p>
+</button>
 
-  <div
-    id="chapterJourney"
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-  </div>
+<button onclick="realLife('anger')" class="feature-card text-left">
+🔥
+<h3 class="font-bold text-maroon mt-2">Anger</h3>
+<p class="text-sm text-ink/60">Learn to understand and control reactions.</p>
+</button>
+
+<button onclick="realLife('overthinking')" class="feature-card text-left">
+🧠
+<h3 class="font-bold text-maroon mt-2">Overthinking</h3>
+<p class="text-sm text-ink/60">Bring attention back to action.</p>
+</button>
+
+<button onclick="realLife('money')" class="feature-card text-left">
+💰
+<h3 class="font-bold text-maroon mt-2">Money Pressure</h3>
+<p class="text-sm text-ink/60">Stay balanced during financial pressure.</p>
+</button>
+
+<button onclick="realLife('relationship')" class="feature-card text-left">
+❤️
+<h3 class="font-bold text-maroon mt-2">Relationships</h3>
+<p class="text-sm text-ink/60">Respond wisely instead of reacting.</p>
+</button>
+
+<button onclick="realLife('fear')" class="feature-card text-left">
+🛡️
+<h3 class="font-bold text-maroon mt-2">Fear</h3>
+<p class="text-sm text-ink/60">Build courage and clarity.</p>
+</button>
+
+<button onclick="realLife('failure')" class="feature-card text-left">
+🌄
+<h3 class="font-bold text-maroon mt-2">Failure</h3>
+<p class="text-sm text-ink/60">Learn to continue after setbacks.</p>
+</button>
+
+</div>
+
+<div id="realLifeResult" class="mt-6"></div>
 
 </section>
 
 
-<!-- ========================================================= -->
-<!-- MAIN LIBRARY -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     DAILY CHALLENGE
+========================================================= -->
 
-<main
-  id="library"
-  class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+<section id="challenge" class="max-w-6xl mx-auto px-4 py-10">
 
-  <h2 class="font-display text-2xl text-maroon mb-6">
-    The eighteen chapters
-  </h2>
+<div class="feature-card">
 
+<h2 class="section-title text-3xl">
+🎯 Daily Gita Challenge
+</h2>
 
-  <div
-    class="grid md:grid-cols-[300px_1fr] gap-0 border border-saffron/30 rounded-lg overflow-hidden bg-paper shadow-sm">
+<p class="text-ink/60 mt-2">
+One small action inspired by the Gita.
+</p>
 
+<div id="challengeBox" class="mt-6"></div>
 
-    <!-- TOC -->
+</div>
 
-    <nav
-      aria-label="Chapters"
-      class="border-b md:border-b-0 md:border-r border-saffron/30 bg-[#FBF2E1]">
-
-      <ul
-        id="toc-list"
-        class="max-h-[480px] md:max-h-[620px] overflow-y-auto divide-y divide-saffron/15">
-
-        <li class="p-4 text-sm text-ink/40">
-          Loading chapters…
-        </li>
-
-      </ul>
-
-    </nav>
+</section>
 
 
-    <!-- READING -->
+<!-- =========================================================
+     SMART SEARCH
+========================================================= -->
 
-    <section
-      aria-live="polite"
-      class="p-6 sm:p-8">
+<section class="max-w-6xl mx-auto px-4 py-10">
 
-      <div
-        id="chapter-header"
-        class="mb-6">
+<div class="feature-card">
 
-        <p class="text-sm text-ink/40">
-          Select a chapter to begin
-        </p>
+<h2 class="section-title text-3xl">
+🔎 Advanced Gita Search
+</h2>
 
-      </div>
+<p class="text-ink/60 mt-2">
+Search by verse number or topic.
+</p>
+
+<div class="mt-5 grid md:grid-cols-[1fr_auto] gap-3">
+
+<input
+id="advancedSearch"
+type="text"
+placeholder="Try: karma, knowledge, duty, peace..."
+class="rounded-lg border border-saffron/40 bg-paper px-4 py-3"
+>
+
+<button
+onclick="advancedSearch()"
+class="rounded-lg bg-maroon text-white px-6 py-3">
+Search
+</button>
+
+</div>
+
+<div id="advancedSearchResult" class="mt-5"></div>
+
+</div>
+
+</section>
 
 
-      <div
-        id="verse-picker"
-        class="flex flex-wrap gap-2 mb-8">
-      </div>
+<!-- =========================================================
+     PERSONAL DASHBOARD
+========================================================= -->
+
+<section id="dashboard" class="max-w-6xl mx-auto px-4 py-10">
+
+<div class="feature-card">
+
+<h2 class="section-title text-3xl">
+📊 Personal Gita Dashboard
+</h2>
+
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+
+<div class="rounded-xl border p-5">
+
+<p class="text-sm text-ink/50">Reading Streak</p>
+
+<p id="dashboardStreak" class="text-3xl font-bold text-maroon mt-2">
+0
+</p>
+
+<p class="text-sm">days</p>
+
+</div>
 
 
-      <div
-        id="verse-content">
+<div class="rounded-xl border p-5">
 
-        <p class="text-ink/50 italic">
-          Choose a chapter and verse on the left, or jump straight to one
-          with the search box above.
-        </p>
+<p class="text-sm text-ink/50">Saved Verses</p>
 
-      </div>
+<p id="dashboardBookmarks" class="text-3xl font-bold text-maroon mt-2">
+0
+</p>
 
-    </section>
+<p class="text-sm">favorites</p>
 
-  </div>
+</div>
+
+
+<div class="rounded-xl border p-5">
+
+<p class="text-sm text-ink/50">Quiz Score</p>
+
+<p id="dashboardQuiz" class="text-3xl font-bold text-maroon mt-2">
+0
+</p>
+
+<p class="text-sm">points</p>
+
+</div>
+
+
+<div class="rounded-xl border p-5">
+
+<p class="text-sm text-ink/50">Chapters</p>
+
+<p id="dashboardChapters" class="text-3xl font-bold text-maroon mt-2">
+0
+</p>
+
+<p class="text-sm">explored</p>
+
+</div>
+
+</div>
+
+<div class="mt-7">
+
+<div class="flex justify-between text-sm mb-2">
+
+<span>Gita Journey</span>
+
+<span id="journeyPercent">0%</span>
+
+</div>
+
+<div class="progress-track">
+
+<div id="journeyProgress" class="progress-fill" style="width:0%"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     18 CHAPTER JOURNEY
+========================================================= -->
+
+<section id="journey" class="max-w-7xl mx-auto px-4 py-10">
+
+<h2 class="section-title text-3xl mb-3">
+🛕 Journey Through 18 Chapters
+</h2>
+
+<p class="text-ink/60 mb-6">
+Explore the Gita chapter by chapter.
+</p>
+
+<div id="chapterJourney"
+class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     QUIZ
+========================================================= -->
+
+<section id="quiz" class="max-w-4xl mx-auto px-4 py-10">
+
+<div class="feature-card">
+
+<h2 class="section-title text-3xl">
+🧠 Gita Quiz
+</h2>
+
+<p class="text-ink/60 mt-2">
+Test your knowledge.
+</p>
+
+<div class="flex gap-2 mt-5 flex-wrap">
+
+<button onclick="startQuiz('easy')"
+class="rounded-lg border px-4 py-2 hover:bg-saffron/10">
+Easy
+</button>
+
+<button onclick="startQuiz('medium')"
+class="rounded-lg border px-4 py-2 hover:bg-saffron/10">
+Medium
+</button>
+
+<button onclick="startQuiz('hard')"
+class="rounded-lg border px-4 py-2 hover:bg-saffron/10">
+Hard
+</button>
+
+</div>
+
+<div id="quizBox" class="mt-7">
+
+<p class="text-ink/50">
+Select a difficulty level to start.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     ASK KRISHNA
+========================================================= -->
+
+<section id="askKrishna" class="max-w-5xl mx-auto px-4 py-10">
+
+<div class="feature-card glow-card">
+
+<h2 class="section-title text-3xl">
+🤖 Ask Krishna 2.0
+</h2>
+
+<p class="text-ink/60 mt-2">
+Ask a question and receive guidance inspired by Bhagavad Gita teachings.
+</p>
+
+<div class="mt-5">
+
+<textarea
+id="krishnaQuestion"
+rows="4"
+placeholder="Example: I am afraid of failure. What should I do?"
+class="w-full rounded-lg border border-saffron/40 bg-paper px-4 py-3 resize-none">
+</textarea>
+
+<button
+onclick="askKrishna()"
+class="mt-3 rounded-lg bg-maroon text-white px-6 py-3">
+Ask Krishna
+</button>
+
+</div>
+
+<div id="krishnaAnswer" class="mt-6"></div>
+
+<p class="text-xs text-ink/40 mt-5">
+This is a learning feature inspired by Gita teachings, not professional medical, legal or financial advice.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     FAVORITES
+========================================================= -->
+
+<section id="favorites" class="max-w-6xl mx-auto px-4 py-10">
+
+<div class="feature-card">
+
+<div class="flex justify-between items-center flex-wrap gap-3">
+
+<h2 class="section-title text-3xl">
+❤️ My Favorites
+</h2>
+
+<button
+onclick="clearFavorites()"
+class="text-sm text-red-700">
+Clear All
+</button>
+
+</div>
+
+<div id="favoritesList" class="mt-6">
+
+<p class="text-ink/50">
+No saved verses yet.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     ORIGINAL GITA LIBRARY
+========================================================= -->
+
+<main id="library" class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+
+<h2 class="section-title text-2xl mb-6">
+The eighteen chapters
+</h2>
+
+<div class="grid md:grid-cols-[300px_1fr] gap-0 border border-saffron/30 rounded-lg overflow-hidden bg-paper shadow-sm">
+
+<nav
+aria-label="Chapters"
+class="border-b md:border-b-0 md:border-r border-saffron/30 bg-[#FBF2E1]">
+
+<ul
+id="toc-list"
+class="max-h-[480px] md:max-h-[620px] overflow-y-auto divide-y divide-saffron/15">
+
+<li class="p-4 text-sm text-ink/40">
+Loading chapters…
+</li>
+
+</ul>
+
+</nav>
+
+
+<section
+aria-live="polite"
+class="p-6 sm:p-8">
+
+<div id="chapter-header" class="mb-6">
+
+<p class="text-sm text-ink/40">
+Select a chapter to begin
+</p>
+
+</div>
+
+
+<div id="verse-picker"
+class="flex flex-wrap gap-2 mb-8">
+</div>
+
+
+<div id="verse-content">
+
+<p class="text-ink/50 italic">
+Choose a chapter and verse on the left, or jump straight to one with the search box above.
+</p>
+
+</div>
+
+</section>
+
+</div>
 
 </main>
 
 
-<!-- ========================================================= -->
-<!-- QUIZ -->
-<!-- ========================================================= -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
-<section
-  id="quizSection"
-  class="max-w-4xl mx-auto px-4 sm:px-6 py-14">
+<footer class="border-t border-saffron/30 py-10 text-center">
 
-  <div class="text-center mb-8">
+<div class="max-w-5xl mx-auto px-4">
 
-    <p class="text-sm uppercase tracking-widest text-saffronDeep font-semibold">
-      Test Your Knowledge
-    </p>
+<p class="font-display text-xl text-maroon">
+ॐ तत् सत्
+</p>
 
-    <h2 class="font-display text-3xl text-maroon mt-2">
-      Gita Quiz 🧠
-    </h2>
+<p class="mt-4 font-semibold text-maroon">
+Created by Rakesh Kumar
+</p>
 
-    <p class="mt-3 text-ink/60">
-      Answer simple questions and learn something new.
-    </p>
+<p class="mt-2 text-sm text-ink/50">
+Built with HTML, CSS & JavaScript
+</p>
 
-  </div>
+<p class="mt-2 text-sm text-ink/40">
+Verses served by the open Bhagavad Gita API
+</p>
 
+<p class="mt-4 text-xs text-ink/40">
+© 2026 Bhagavad Gita
+</p>
 
-  <div
-    id="quizCard"
-    class="bg-paper border border-saffron/30 rounded-2xl p-6 sm:p-8 shadow-sm">
-
-  </div>
-
-</section>
-
-
-<!-- ========================================================= -->
-<!-- ASK KRISHNA -->
-<!-- ========================================================= -->
-
-<section
-  class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
-
-  <div
-    class="relative overflow-hidden bg-[#F3E2C4] border border-saffron/30 rounded-3xl p-8 sm:p-12">
-
-    <div class="grid md:grid-cols-[150px_1fr] gap-7 items-center">
-
-      <div class="text-center">
-
-        <div class="text-7xl">
-          🪷
-        </div>
-
-        <div class="font-display text-maroon mt-2">
-          Krishna
-        </div>
-
-      </div>
-
-
-      <div>
-
-        <p class="text-sm uppercase tracking-widest text-saffronDeep font-semibold">
-          Krishna's Guidance
-        </p>
-
-        <h2 class="font-display text-3xl text-maroon mt-2">
-          Ask Krishna
-        </h2>
-
-        <p class="mt-3 text-ink/70">
-          Type a question about life, fear, anger, duty, success or peace.
-        </p>
-
-
-        <div class="mt-6 flex flex-col sm:flex-row gap-2">
-
-          <input
-            id="krishnaQuestion"
-            type="text"
-            placeholder="Example: How can I control my anger?"
-            class="flex-1 rounded-lg border border-saffron/40 bg-paper px-4 py-3"
-          />
-
-          <button
-            id="askKrishnaBtn"
-            class="rounded-lg bg-maroon px-6 py-3 text-paper font-semibold hover:bg-maroonDeep transition">
-            Ask Krishna
-          </button>
-
-        </div>
-
-
-        <div
-          id="krishnaAnswer"
-          class="hidden mt-5 bg-paper rounded-xl p-5 border border-saffron/20">
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ========================================================= -->
-<!-- FOOTER -->
-<!-- ========================================================= -->
-
-<footer class="border-t border-saffron/30 py-10 text-center text-sm text-ink/50">
-
-  <p>
-    Built with HTML, CSS & JavaScript
-  </p>
-
-  <p
-    class="mt-2 text-maroon font-bold">
-    Created by Rakesh Kumar
-  </p>
-
-  <p class="mt-2">
-    Verses served by the open Bhagavad Gita API
-  </p>
-
-  <p class="mt-2">
-    © 2026 Bhagavad Gita
-  </p>
+</div>
 
 </footer>
 
 
-<!-- ========================================================= -->
-<!-- JAVASCRIPT -->
-<!-- ========================================================= -->
-
 <script>
-
-(function () {
 
 "use strict";
 
 
 /* =========================================================
-   CONFIG
+   API
 ========================================================= */
 
 const API_BASE = "https://vedicscriptures.github.io";
-
-
-const FALLBACK_CHAPTERS = Array.from(
-  { length: 18 },
-  (_, i) => ({
-    chapter_number: i + 1,
-    name: "अध्याय " + (i + 1),
-    translation: "Chapter " + (i + 1),
-    verses_count: null
-  })
-);
 
 
 /* =========================================================
@@ -929,7 +1125,9 @@ const state = {
 
   activeTab: "sanskrit",
 
-  verseData: null
+  verseData: null,
+
+  quiz: null
 
 };
 
@@ -939,131 +1137,458 @@ const state = {
 ========================================================= */
 
 const tocList =
-  document.getElementById("toc-list");
+document.getElementById("toc-list");
 
 const chapterHead =
-  document.getElementById("chapter-header");
+document.getElementById("chapter-header");
 
 const versePicker =
-  document.getElementById("verse-picker");
+document.getElementById("verse-picker");
 
 const verseContent =
-  document.getElementById("verse-content");
+document.getElementById("verse-content");
 
-const searchForm =
-  document.getElementById("search-form");
 
-const searchInput =
-  document.getElementById("search-input");
+/* =========================================================
+   FALLBACK CHAPTERS
+========================================================= */
 
-const searchHint =
-  document.getElementById("search-hint");
+const FALLBACK_CHAPTERS =
+Array.from({length:18},(_,i)=>({
+
+  chapter_number:i+1,
+
+  name:"अध्याय " + (i+1),
+
+  translation:"Chapter " + (i+1),
+
+  verses_count:null
+
+}));
 
 
 /* =========================================================
    IMAGE FALLBACK
 ========================================================= */
 
-window.imageFallback = function (img) {
+function imageFallback(img) {
 
   img.onerror = null;
 
   img.src =
-    "./ChatGPT%20Image%20Sep%2013%2C%202026%2C%2012_44_21%20PM.png";
-
-};
-
-
-/* =========================================================
-   HERO RAYS
-========================================================= */
-
-function initHeroRays() {
-
-  const raysGroup =
-    document.getElementById("rays");
-
-  if (!raysGroup) return;
-
-  const cx = 450;
-  const cy = 380;
-  const rInner = 150;
-  const rOuter = 300;
-  const count = 24;
-
-  let html = "";
-
-  for (let i = 0; i < count; i++) {
-
-    const angle =
-      (i / count) * 2 * Math.PI;
-
-    const x1 =
-      cx + rInner * Math.cos(angle);
-
-    const y1 =
-      cy + rInner * Math.sin(angle);
-
-    const x2 =
-      cx + rOuter * Math.cos(angle);
-
-    const y2 =
-      cy + rOuter * Math.sin(angle);
-
-    html += `
-      <line
-        x1="${x1.toFixed(1)}"
-        y1="${y1.toFixed(1)}"
-        x2="${x2.toFixed(1)}"
-        y2="${y2.toFixed(1)}"
-      />
-    `;
-
-  }
-
-  raysGroup.innerHTML = html;
+  "./ChatGPT%20Image%20Sep%2013%2C%202026%2C%2012_44_21%20PM.png";
 
 }
 
 
 /* =========================================================
-   HERO VERSE
+   DARK MODE
 ========================================================= */
 
-async function loadHeroVerse() {
+function toggleDarkMode() {
+
+  document.body.classList.toggle("dark-mode");
+
+  const dark =
+  document.body.classList.contains("dark-mode");
+
+  localStorage.setItem("gitaDarkMode", dark ? "1" : "0");
+
+  document.getElementById("themeBtn").textContent =
+  dark ? "☀️" : "🌙";
+
+}
+
+
+function loadTheme() {
+
+  const dark =
+  localStorage.getItem("gitaDarkMode") === "1";
+
+  if(dark) {
+
+    document.body.classList.add("dark-mode");
+
+    document.getElementById("themeBtn").textContent = "☀️";
+
+  }
+
+}
+
+
+/* =========================================================
+   BOOKMARKS
+========================================================= */
+
+function getBookmarks() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem("gitaBookmarks") || "[]"
+    );
+
+  } catch {
+
+    return [];
+
+  }
+
+}
+
+
+function saveBookmarks(items) {
+
+  localStorage.setItem(
+    "gitaBookmarks",
+    JSON.stringify(items)
+  );
+
+}
+
+
+function bookmarkKey(chapter,verse) {
+
+  return `${chapter}.${verse}`;
+
+}
+
+
+function isBookmarked(chapter,verse) {
+
+  return getBookmarks()
+  .some(x =>
+    x.chapter === chapter &&
+    x.verse === verse
+  );
+
+}
+
+
+function toggleBookmark(chapter,verse) {
+
+  let items = getBookmarks();
+
+  const index =
+  items.findIndex(x =>
+    x.chapter === chapter &&
+    x.verse === verse
+  );
+
+  if(index >= 0) {
+
+    items.splice(index,1);
+
+  } else {
+
+    items.push({
+      chapter,
+      verse,
+      savedAt:new Date().toISOString()
+    });
+
+  }
+
+  saveBookmarks(items);
+
+  updateDashboard();
+
+  renderFavorites();
+
+  if(state.verseData) {
+
+    renderTabs();
+
+  }
+
+}
+
+
+function showFavorites() {
+
+  document
+  .getElementById("favorites")
+  .scrollIntoView({behavior:"smooth"});
+
+  renderFavorites();
+
+}
+
+
+function clearFavorites() {
+
+  if(!confirm("Remove all saved verses?")) return;
+
+  localStorage.removeItem("gitaBookmarks");
+
+  renderFavorites();
+
+  updateDashboard();
+
+}
+
+
+async function renderFavorites() {
+
+  const box =
+  document.getElementById("favoritesList");
+
+  const items = getBookmarks();
+
+  document.getElementById("bookmarkHero").textContent =
+  items.length;
+
+  if(!items.length) {
+
+    box.innerHTML =
+    `<p class="text-ink/50">
+      No saved verses yet. Open a verse and click the heart button.
+    </p>`;
+
+    return;
+
+  }
+
+  box.innerHTML = items.map(item => `
+
+    <div class="border rounded-xl p-4 mb-3">
+
+      <div class="flex justify-between gap-3">
+
+        <strong class="text-maroon">
+          Bhagavad Gita ${item.chapter}.${item.verse}
+        </strong>
+
+        <button
+          onclick="loadVerse(${item.chapter},${item.verse}); document.getElementById('library').scrollIntoView({behavior:'smooth'})"
+          class="text-sm text-maroon">
+
+          Read
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* =========================================================
+   STREAK
+========================================================= */
+
+function updateStreak() {
+
+  const today =
+  new Date().toISOString().slice(0,10);
+
+  const stored =
+  JSON.parse(
+    localStorage.getItem("gitaStreak") ||
+    '{"count":0,"last":""}'
+  );
+
+  if(stored.last !== today) {
+
+    const yesterday =
+    new Date(Date.now()-86400000)
+    .toISOString()
+    .slice(0,10);
+
+    if(stored.last === yesterday) {
+
+      stored.count++;
+
+    } else {
+
+      stored.count = 1;
+
+    }
+
+    stored.last = today;
+
+    localStorage.setItem(
+      "gitaStreak",
+      JSON.stringify(stored)
+    );
+
+  }
+
+  document.getElementById("streakHero").textContent =
+  stored.count;
+
+}
+
+
+function getStreak() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem("gitaStreak") ||
+      '{"count":0,"last":""}'
+    ).count;
+
+  } catch {
+
+    return 0;
+
+  }
+
+}
+
+
+/* =========================================================
+   CHAPTER PROGRESS
+========================================================= */
+
+function getExploredChapters() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem("gitaChapters") || "[]"
+    );
+
+  } catch {
+
+    return [];
+
+  }
+
+}
+
+
+function markChapterExplored(chapter) {
+
+  let list =
+  getExploredChapters();
+
+  if(!list.includes(chapter)) {
+
+    list.push(chapter);
+
+    localStorage.setItem(
+      "gitaChapters",
+      JSON.stringify(list)
+    );
+
+  }
+
+  updateDashboard();
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard() {
+
+  const streak =
+  getStreak();
+
+  const bookmarks =
+  getBookmarks().length;
+
+  const chapters =
+  getExploredChapters().length;
+
+  const quizScore =
+  Number(localStorage.getItem("gitaQuizScore") || 0);
+
+  document.getElementById("dashboardStreak").textContent =
+  streak;
+
+  document.getElementById("dashboardBookmarks").textContent =
+  bookmarks;
+
+  document.getElementById("dashboardQuiz").textContent =
+  quizScore;
+
+  document.getElementById("dashboardChapters").textContent =
+  chapters;
+
+  const percent =
+  Math.round((chapters / 18) * 100);
+
+  document.getElementById("journeyPercent").textContent =
+  percent + "%";
+
+  document.getElementById("journeyProgress").style.width =
+  percent + "%";
+
+}
+
+
+/* =========================================================
+   DAILY VERSE
+========================================================= */
+
+async function loadDailyVerse() {
+
+  const box =
+  document.getElementById("dailyVerseBox");
+
+  const day =
+  Math.floor(
+    (Date.now()/86400000)
+  );
+
+  const chapter =
+  (day % 18) + 1;
+
+  const verse =
+  (day % 20) + 1;
+
+  box.innerHTML =
+  `<p class="text-ink/40 animate-pulse">
+    Loading today's verse...
+  </p>`;
 
   try {
 
     const res =
-      await fetch(`${API_BASE}/slok/2/47`);
+    await fetch(
+      `${API_BASE}/slok/${chapter}/${verse}`
+    );
 
-    if (!res.ok)
-      throw new Error("network");
+    if(!res.ok)
+      throw new Error();
 
     const data =
-      await res.json();
+    await res.json();
 
-    const firstLine =
-      (data.slok || "")
-      .split("\n")[0];
+    box.innerHTML = `
 
-    const box =
-      document.getElementById("hero-verse");
+      <p class="font-display text-xl devanagari-line">
+        ${data.slok || "Verse unavailable"}
+      </p>
 
-    document.getElementById(
-      "hero-verse-text"
-    ).textContent = firstLine;
+      <p class="mt-4 text-sm text-maroon">
+        Bhagavad Gita — Chapter ${chapter}, Verse ${verse}
+      </p>
 
-    document.getElementById(
-      "hero-verse-ref"
-    ).textContent =
-      "Bhagavad Gita, Chapter 2, Verse 47";
+      <button
+        onclick="loadVerse(${chapter},${verse}); document.getElementById('library').scrollIntoView({behavior:'smooth'})"
+        class="mt-4 rounded-lg bg-maroon text-white px-4 py-2 text-sm">
 
-    box.classList.remove("hidden");
+        Read Full Verse
 
-  } catch (e) {
+      </button>
 
-    console.log("Hero verse unavailable.");
+    `;
+
+  } catch {
+
+    box.innerHTML =
+    `<p class="text-ink/50">
+      Today's verse could not be loaded. Please try again.
+    </p>`;
 
   }
 
@@ -1071,7 +1596,938 @@ async function loadHeroVerse() {
 
 
 /* =========================================================
-   CHAPTERS
+   WISDOM FINDER
+========================================================= */
+
+const wisdomMap = {
+
+  confused: {
+    title:"When you feel confused",
+    chapter:2,
+    verse:47,
+    message:"Focus on your action rather than becoming overwhelmed by the result."
+  },
+
+  sad: {
+    title:"When you feel sad",
+    chapter:2,
+    verse:14,
+    message:"Difficult experiences are temporary. Try to face them with patience and steadiness."
+  },
+
+  angry: {
+    title:"When you feel angry",
+    chapter:2,
+    verse:63,
+    message:"The Gita explains how uncontrolled desire can lead toward anger and loss of judgment."
+  },
+
+  stressed: {
+    title:"When you feel stressed",
+    chapter:6,
+    verse:5,
+    message:"The mind can become your friend when you learn to guide it rather than allowing it to control you."
+  },
+
+  fear: {
+    title:"When you feel afraid",
+    chapter:4,
+    verse:10,
+    message:"Develop courage through knowledge, discipline and a steady mind."
+  },
+
+  motivation: {
+    title:"When you need motivation",
+    chapter:3,
+    verse:19,
+    message:"Continue performing your duty sincerely without becoming attached to the result."
+  },
+
+  peace: {
+    title:"When you want peace",
+    chapter:2,
+    verse:70,
+    message:"Inner peace grows when the mind is not constantly pulled by every desire."
+  },
+
+  failure: {
+    title:"When you face failure",
+    chapter:2,
+    verse:48,
+    message:"Stay balanced in success and failure and continue doing your work."
+  }
+
+};
+
+
+async function wisdomFinder(type) {
+
+  const item =
+  wisdomMap[type];
+
+  const result =
+  document.getElementById("wisdomResult");
+
+  result.innerHTML = `
+
+    <div class="rounded-xl border border-saffron/30 p-5 bg-saffron/5">
+
+      <h3 class="font-display text-xl text-maroon">
+        ${item.title}
+      </h3>
+
+      <p class="mt-2">
+        ${item.message}
+      </p>
+
+      <button
+        onclick="loadVerse(${item.chapter},${item.verse}); document.getElementById('library').scrollIntoView({behavior:'smooth'})"
+        class="mt-4 rounded-lg bg-maroon text-white px-4 py-2">
+
+        Read Chapter ${item.chapter}, Verse ${item.verse}
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   REAL LIFE
+========================================================= */
+
+const realLifeMap = {
+
+  exam: {
+    title:"Exam Stress",
+    text:"Do your preparation sincerely and focus on today's work. Don't let fear about the final result consume all your energy.",
+    verse:"2.47"
+  },
+
+  career: {
+    title:"Career Confusion",
+    text:"Develop your skills and perform the responsibility in front of you. Clarity often comes through action, learning and experience.",
+    verse:"3.35"
+  },
+
+  anger: {
+    title:"Anger",
+    text:"Before reacting, pause. The Gita connects uncontrolled desire, anger and loss of judgment.",
+    verse:"2.63"
+  },
+
+  overthinking: {
+    title:"Overthinking",
+    text:"Bring your attention back to what you can actually do now. Action is within your control; the exact result is not.",
+    verse:"2.47"
+  },
+
+  money: {
+    title:"Money Pressure",
+    text:"Work sincerely and make practical decisions, while avoiding a mindset where your entire peace depends on one result.",
+    verse:"2.47"
+  },
+
+  relationship: {
+    title:"Relationships",
+    text:"Try to respond with understanding rather than acting only from anger, attachment or expectation.",
+    verse:"2.62"
+  },
+
+  fear: {
+    title:"Fear",
+    text:"Build courage through knowledge, self-discipline and steady action.",
+    verse:"4.10"
+  },
+
+  failure: {
+    title:"Failure",
+    text:"Failure does not define your entire journey. Learn, correct your action and continue.",
+    verse:"2.48"
+  }
+
+};
+
+
+function realLife(type) {
+
+  const item =
+  realLifeMap[type];
+
+  const [chapter,verse] =
+  item.verse.split(".").map(Number);
+
+  document.getElementById("realLifeResult").innerHTML = `
+
+    <div class="rounded-xl border border-saffron/30 p-6">
+
+      <h3 class="font-display text-2xl text-maroon">
+        ${item.title}
+      </h3>
+
+      <p class="mt-3 leading-relaxed">
+        ${item.text}
+      </p>
+
+      <button
+        onclick="loadVerse(${chapter},${verse}); document.getElementById('library').scrollIntoView({behavior:'smooth'})"
+        class="mt-4 rounded-lg bg-maroon text-white px-5 py-2">
+
+        Explore Verse ${item.verse}
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   DAILY CHALLENGE
+========================================================= */
+
+const challenges = [
+
+  "Read one verse slowly and think about its meaning for two minutes.",
+
+  "Do one important task today without worrying repeatedly about the final result.",
+
+  "When you feel angry today, pause for ten seconds before responding.",
+
+  "Spend five minutes in silence and observe your thoughts.",
+
+  "Complete one responsibility that you have been postponing.",
+
+  "Help someone without expecting praise in return.",
+
+  "Read Chapter 2, Verse 47 and write one sentence about what it means to you.",
+
+  "Avoid one unnecessary distraction while working or studying."
+
+];
+
+
+function loadChallenge() {
+
+  const day =
+  Math.floor(Date.now()/86400000);
+
+  const challenge =
+  challenges[day % challenges.length];
+
+  const key =
+  "gitaChallenge_" +
+  new Date().toISOString().slice(0,10);
+
+  const completed =
+  localStorage.getItem(key) === "1";
+
+  document.getElementById("challengeBox").innerHTML = `
+
+    <div class="rounded-xl border p-6">
+
+      <p class="text-sm text-saffronDeep font-semibold">
+        TODAY'S ACTION
+      </p>
+
+      <p class="font-display text-xl text-maroon mt-3">
+        ${challenge}
+      </p>
+
+      <button
+        onclick="completeChallenge()"
+        ${completed ? "disabled" : ""}
+        class="mt-5 rounded-lg px-5 py-2 ${completed ? 'bg-green-700 text-white' : 'bg-maroon text-white'}">
+
+        ${completed ? "✓ Challenge Completed" : "Mark Complete"}
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+function completeChallenge() {
+
+  const key =
+  "gitaChallenge_" +
+  new Date().toISOString().slice(0,10);
+
+  localStorage.setItem(key,"1");
+
+  loadChallenge();
+
+}
+
+
+/* =========================================================
+   ADVANCED SEARCH
+========================================================= */
+
+function advancedSearch() {
+
+  const query =
+  document.getElementById("advancedSearch")
+  .value
+  .trim()
+  .toLowerCase();
+
+  const result =
+  document.getElementById("advancedSearchResult");
+
+  if(!query) {
+
+    result.innerHTML =
+    `<p class="text-ink/50">
+      Enter a topic such as karma, duty, knowledge, peace or fear.
+    </p>`;
+
+    return;
+
+  }
+
+  const topics = {
+
+    karma:[2,47,"Action and responsibility"],
+
+    duty:[3,19,"Performing one's duty"],
+
+    knowledge:[4,38,"Knowledge and wisdom"],
+
+    peace:[2,70,"Inner peace"],
+
+    fear:[4,10,"Courage and steadiness"],
+
+    mind:[6,5,"Mastering the mind"],
+
+    meditation:[6,35,"Practice and meditation"],
+
+    anger:[2,63,"Anger and loss of judgment"],
+
+    devotion:[12,13,"Devotion and compassion"],
+
+    failure:[2,48,"Balance in success and failure"]
+
+  };
+
+  let found = null;
+
+  for(const key in topics) {
+
+    if(query.includes(key)) {
+
+      found = topics[key];
+
+      break;
+
+    }
+
+  }
+
+  if(!found) {
+
+    result.innerHTML = `
+
+      <div class="rounded-lg border p-4">
+
+        <p>No direct topic match found.</p>
+
+        <p class="text-sm text-ink/50 mt-2">
+          Try: karma, duty, knowledge, peace, fear, mind, meditation, anger, devotion, failure.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  result.innerHTML = `
+
+    <div class="rounded-lg border p-5">
+
+      <p class="text-sm text-saffronDeep">
+        Topic found
+      </p>
+
+      <h3 class="font-display text-xl text-maroon mt-1">
+        ${found[2]}
+      </h3>
+
+      <p class="mt-2">
+        Bhagavad Gita Chapter ${found[0]}, Verse ${found[1]}
+      </p>
+
+      <button
+        onclick="loadVerse(${found[0]},${found[1]}); document.getElementById('library').scrollIntoView({behavior:'smooth'})"
+        class="mt-4 rounded-lg bg-maroon text-white px-4 py-2">
+
+        Read Verse
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   CHAPTER JOURNEY
+========================================================= */
+
+const chapterNames = [
+
+  "Arjuna Vishada Yoga",
+  "Sankhya Yoga",
+  "Karma Yoga",
+  "Jnana Karma Sannyasa Yoga",
+  "Karma Sannyasa Yoga",
+  "Dhyana Yoga",
+  "Jnana Vijnana Yoga",
+  "Akshara Brahma Yoga",
+  "Raja Vidya Raja Guhya Yoga",
+  "Vibhuti Yoga",
+  "Vishvarupa Darshana Yoga",
+  "Bhakti Yoga",
+  "Kshetra Kshetrajna Vibhaga Yoga",
+  "Gunatraya Vibhaga Yoga",
+  "Purushottama Yoga",
+  "Daivasura Sampad Vibhaga Yoga",
+  "Shraddhatraya Vibhaga Yoga",
+  "Moksha Sannyasa Yoga"
+
+];
+
+
+function renderChapterJourney() {
+
+  const box =
+  document.getElementById("chapterJourney");
+
+  const explored =
+  getExploredChapters();
+
+  box.innerHTML =
+  chapterNames.map((name,index)=>{
+
+    const chapter =
+    index + 1;
+
+    const done =
+    explored.includes(chapter);
+
+    return `
+
+      <button
+        onclick="loadVerse(${chapter},1); document.getElementById('library').scrollIntoView({behavior:'smooth'})"
+        class="feature-card chapter-journey text-left">
+
+        <div class="flex items-start gap-4">
+
+          <div class="journey-number">
+            ${chapter}
+          </div>
+
+          <div>
+
+            <h3 class="font-display text-lg text-maroon">
+              Chapter ${chapter}
+            </h3>
+
+            <p class="text-sm mt-1">
+              ${name}
+            </p>
+
+            <p class="text-xs text-ink/50 mt-2">
+              ${done ? "✓ Explored" : "Start chapter →"}
+            </p>
+
+          </div>
+
+        </div>
+
+      </button>
+
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================================================
+   QUIZ DATA
+========================================================= */
+
+const quizData = {
+
+  easy:[
+
+    {
+      q:"How many chapters are there in the Bhagavad Gita?",
+      options:["12","18","20","24"],
+      answer:1
+    },
+
+    {
+      q:"Who gives the teachings of the Gita to Arjuna?",
+      options:["Bhishma","Drona","Krishna","Yudhishthira"],
+      answer:2
+    },
+
+    {
+      q:"On which battlefield does the Gita dialogue take place?",
+      options:["Kurukshetra","Lanka","Mathura","Hastinapura"],
+      answer:0
+    }
+
+  ],
+
+  medium:[
+
+    {
+      q:"Which chapter is known as Karma Yoga?",
+      options:["Chapter 2","Chapter 3","Chapter 6","Chapter 12"],
+      answer:1
+    },
+
+    {
+      q:"Chapter 2, Verse 47 is mainly associated with what teaching?",
+      options:[
+        "Attachment to results",
+        "Focus on one's action",
+        "Avoiding all work",
+        "Material wealth"
+      ],
+      answer:1
+    },
+
+    {
+      q:"Which chapter focuses strongly on Bhakti Yoga?",
+      options:["Chapter 5","Chapter 8","Chapter 12","Chapter 18"],
+      answer:2
+    }
+
+  ],
+
+  hard:[
+
+    {
+      q:"Which chapter discusses the three Gunas?",
+      options:["Chapter 10","Chapter 12","Chapter 14","Chapter 17"],
+      answer:2
+    },
+
+    {
+      q:"Which chapter is associated with the Vishvarupa Darshana?",
+      options:["Chapter 7","Chapter 9","Chapter 11","Chapter 15"],
+      answer:2
+    },
+
+    {
+      q:"Which chapter is the final chapter of the Bhagavad Gita?",
+      options:["Chapter 16","Chapter 17","Chapter 18","Chapter 20"],
+      answer:2
+    }
+
+  ]
+
+};
+
+
+function startQuiz(level) {
+
+  state.quiz = {
+
+    level,
+
+    index:0,
+
+    score:0,
+
+    questions:quizData[level]
+
+  };
+
+  renderQuiz();
+
+}
+
+
+function renderQuiz() {
+
+  const quiz =
+  state.quiz;
+
+  const box =
+  document.getElementById("quizBox");
+
+  if(quiz.index >= quiz.questions.length) {
+
+    const old =
+    Number(
+      localStorage.getItem("gitaQuizScore") || 0
+    );
+
+    localStorage.setItem(
+      "gitaQuizScore",
+      String(old + quiz.score)
+    );
+
+    updateDashboard();
+
+    box.innerHTML = `
+
+      <div class="rounded-xl border p-6 text-center">
+
+        <div class="text-5xl">
+          🎉
+        </div>
+
+        <h3 class="font-display text-2xl text-maroon mt-3">
+          Quiz Completed
+        </h3>
+
+        <p class="mt-3">
+          You scored
+          <strong>${quiz.score}</strong>
+          out of
+          <strong>${quiz.questions.length}</strong>
+        </p>
+
+        <button
+          onclick="startQuiz('${quiz.level}')"
+          class="mt-5 rounded-lg bg-maroon text-white px-5 py-2">
+
+          Try Again
+
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  const question =
+  quiz.questions[quiz.index];
+
+  box.innerHTML = `
+
+    <div>
+
+      <div class="flex justify-between text-sm text-ink/50">
+
+        <span>
+          ${quiz.level.toUpperCase()}
+        </span>
+
+        <span>
+          Question ${quiz.index + 1}/${quiz.questions.length}
+        </span>
+
+      </div>
+
+      <h3 class="font-display text-xl text-maroon mt-5">
+        ${question.q}
+      </h3>
+
+      <div class="mt-4">
+
+        ${question.options.map((option,index)=>`
+
+          <button
+            onclick="answerQuiz(${index})"
+            class="quiz-option">
+
+            ${String.fromCharCode(65+index)}.
+            ${option}
+
+          </button>
+
+        `).join("")}
+
+      </div>
+
+      <div id="quizFeedback" class="mt-4"></div>
+
+    </div>
+
+  `;
+
+}
+
+
+function answerQuiz(selected) {
+
+  const quiz =
+  state.quiz;
+
+  const question =
+  quiz.questions[quiz.index];
+
+  const buttons =
+  document.querySelectorAll(".quiz-option");
+
+  buttons.forEach(btn =>
+    btn.disabled = true
+  );
+
+  if(selected === question.answer) {
+
+    quiz.score++;
+
+    buttons[selected].classList.add("correct");
+
+    document.getElementById("quizFeedback").innerHTML =
+    `<p class="text-green-700 font-semibold">
+      ✓ Correct!
+    </p>`;
+
+  } else {
+
+    buttons[selected].classList.add("wrong");
+
+    buttons[question.answer].classList.add("correct");
+
+    document.getElementById("quizFeedback").innerHTML =
+    `<p class="text-red-700">
+      Not quite. The correct answer is highlighted.
+    </p>`;
+
+  }
+
+  setTimeout(()=>{
+
+    quiz.index++;
+
+    renderQuiz();
+
+  },900);
+
+}
+
+
+/* =========================================================
+   ASK KRISHNA
+========================================================= */
+
+function askKrishna() {
+
+  const question =
+  document.getElementById("krishnaQuestion")
+  .value
+  .trim()
+  .toLowerCase();
+
+  const answer =
+  document.getElementById("krishnaAnswer");
+
+  if(!question) {
+
+    answer.innerHTML =
+    `<p class="text-maroon">
+      Please write your question first.
+    </p>`;
+
+    return;
+
+  }
+
+  let response = {
+
+    title:"A Gita-inspired thought",
+
+    text:"Focus on what is within your control. Perform your responsibility sincerely and avoid allowing fear about the result to control your mind.",
+
+    verse:"2.47"
+
+  };
+
+
+  if(
+    question.includes("fail") ||
+    question.includes("failure") ||
+    question.includes("result") ||
+    question.includes("job")
+  ) {
+
+    response = {
+
+      title:"When you are worried about the result",
+
+      text:"Give your best effort to the work in front of you. Your responsibility is the action; the exact result is not completely under your control.",
+
+      verse:"2.47"
+
+    };
+
+  }
+
+
+  else if(
+    question.includes("anger") ||
+    question.includes("angry")
+  ) {
+
+    response = {
+
+      title:"When anger takes control",
+
+      text:"Pause before reacting. The Gita describes how uncontrolled desire can lead to anger, confusion and loss of judgment.",
+
+      verse:"2.62"
+
+    };
+
+  }
+
+
+  else if(
+    question.includes("fear") ||
+    question.includes("afraid")
+  ) {
+
+    response = {
+
+      title:"When fear appears",
+
+      text:"Don't let fear stop meaningful action. Develop knowledge, discipline and steadiness, then take the next practical step.",
+
+      verse:"4.10"
+
+    };
+
+  }
+
+
+  else if(
+    question.includes("sad") ||
+    question.includes("depress")
+  ) {
+
+    response = {
+
+      title:"When the mind feels heavy",
+
+      text:"Difficult experiences change with time. Try to remain steady and take one manageable step instead of fighting every thought at once.",
+
+      verse:"2.14"
+
+    };
+
+  }
+
+
+  else if(
+    question.includes("confus") ||
+    question.includes("career") ||
+    question.includes("future")
+  ) {
+
+    response = {
+
+      title:"When you don't know what to choose",
+
+      text:"Don't wait for perfect certainty. Learn, act responsibly, observe the results and improve your next action.",
+
+      verse:"3.35"
+
+    };
+
+  }
+
+
+  answer.innerHTML = `
+
+    <div class="rounded-xl border border-saffron/30 p-6 bg-saffron/5">
+
+      <p class="text-sm text-saffronDeep font-semibold">
+        KRISHNA'S GUIDANCE
+      </p>
+
+      <h3 class="font-display text-2xl text-maroon mt-2">
+        ${response.title}
+      </h3>
+
+      <p class="mt-4 leading-relaxed">
+        ${response.text}
+      </p>
+
+      <button
+        onclick="loadVerse(${response.verse.split(".")[0]},${response.verse.split(".")[1]}); document.getElementById('library').scrollIntoView({behavior:'smooth'})"
+        class="mt-5 rounded-lg bg-maroon text-white px-5 py-2">
+
+        Explore Gita ${response.verse}
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SPEECH AUDIO
+========================================================= */
+
+function speakText(text, language="hi-IN") {
+
+  if(!("speechSynthesis" in window)) {
+
+    alert("Your browser does not support speech synthesis.");
+
+    return;
+
+  }
+
+  speechSynthesis.cancel();
+
+  const utterance =
+  new SpeechSynthesisUtterance(text);
+
+  utterance.lang =
+  language;
+
+  utterance.rate =
+  0.85;
+
+  speechSynthesis.speak(
+    utterance
+  );
+
+}
+
+
+function stopAudio() {
+
+  if("speechSynthesis" in window) {
+
+    speechSynthesis.cancel();
+
+  }
+
+}
+
+
+/* =========================================================
+   CHAPTER INDEX
 ========================================================= */
 
 async function loadChapters() {
@@ -1079,25 +2535,26 @@ async function loadChapters() {
   try {
 
     const res =
-      await fetch(`${API_BASE}/chapters`);
+    await fetch(
+      `${API_BASE}/chapters`
+    );
 
-    if (!res.ok)
-      throw new Error("network");
+    if(!res.ok)
+      throw new Error();
 
     const data =
-      await res.json();
+    await res.json();
 
     state.chapters =
-      data.sort(
-        (a, b) =>
-          a.chapter_number -
-          b.chapter_number
-      );
+    data.sort(
+      (a,b)=>
+      a.chapter_number-b.chapter_number
+    );
 
-  } catch (e) {
+  } catch {
 
     state.chapters =
-      FALLBACK_CHAPTERS;
+    FALLBACK_CHAPTERS;
 
   }
 
@@ -1107,52 +2564,47 @@ async function loadChapters() {
 
   selectChapter(1);
 
+  updateDashboard();
+
 }
 
-
-/* =========================================================
-   TABLE OF CONTENTS
-========================================================= */
 
 function renderTOC() {
 
   tocList.innerHTML = "";
 
-  state.chapters.forEach((ch) => {
+  state.chapters.forEach(ch=>{
 
     const li =
-      document.createElement("li");
+    document.createElement("li");
 
     li.className =
-      "toc-row border-l-4 border-transparent";
+    "toc-row border-l-4 border-transparent";
 
     li.dataset.chapter =
-      ch.chapter_number;
+    ch.chapter_number;
 
     const count =
-      ch.verses_count
-        ? `${ch.verses_count} verses`
-        : "";
+    ch.verses_count
+    ? `${ch.verses_count} verses`
+    : "";
 
     li.innerHTML = `
 
       <button
-        class="w-full text-left px-4 py-3 flex items-baseline gap-3 hover:bg-saffron/10 transition-colors">
+        class="w-full text-left px-4 py-3 flex items-baseline gap-3 hover:bg-saffron/10">
 
-        <span
-          class="font-display text-maroon/70 text-sm w-5 shrink-0">
+        <span class="font-display text-maroon/70 text-sm w-5 shrink-0">
           ${ch.chapter_number}
         </span>
 
         <span class="min-w-0">
 
-          <span
-            class="block font-display text-ink truncate">
+          <span class="block font-display text-ink truncate">
             ${ch.name || "—"}
           </span>
 
-          <span
-            class="block text-xs text-ink/50 truncate">
+          <span class="block text-xs text-ink/50 truncate">
             ${ch.translation || ""}
             ${count ? " · " + count : ""}
           </span>
@@ -1160,16 +2612,15 @@ function renderTOC() {
         </span>
 
       </button>
+
     `;
 
-    li.querySelector("button")
-      .addEventListener(
-        "click",
-        () =>
-          selectChapter(
-            ch.chapter_number
-          )
-      );
+    li
+    .querySelector("button")
+    .addEventListener(
+      "click",
+      ()=>selectChapter(ch.chapter_number)
+    );
 
     tocList.appendChild(li);
 
@@ -1178,23 +2629,18 @@ function renderTOC() {
 }
 
 
-/* =========================================================
-   ACTIVE CHAPTER
-========================================================= */
-
 function markActiveChapterRow(chapterNumber) {
 
   document
-    .querySelectorAll(".toc-row")
-    .forEach((row) => {
+  .querySelectorAll(".toc-row")
+  .forEach(row=>{
 
-      row.classList.toggle(
-        "active",
-        Number(row.dataset.chapter)
-        === chapterNumber
-      );
+    row.classList.toggle(
+      "active",
+      Number(row.dataset.chapter) === chapterNumber
+    );
 
-    });
+  });
 
 }
 
@@ -1206,19 +2652,21 @@ function markActiveChapterRow(chapterNumber) {
 function selectChapter(chapterNumber) {
 
   const chapter =
-    state.chapters.find(
-      (c) =>
-        c.chapter_number
-        === chapterNumber
-    );
+  state.chapters.find(
+    c =>
+    c.chapter_number === chapterNumber
+  );
 
   state.activeChapter =
-    chapterNumber;
+  chapterNumber;
 
   markActiveChapterRow(
     chapterNumber
   );
 
+  markChapterExplored(
+    chapterNumber
+  );
 
   chapterHead.innerHTML = `
 
@@ -1227,66 +2675,57 @@ function selectChapter(chapterNumber) {
     </p>
 
     <h3 class="font-display text-2xl text-maroon">
-      ${chapter?.name || ""}
+      ${chapter?.name || chapterNames[chapterNumber-1] || ""}
     </h3>
 
     <p class="text-ink/70">
       ${chapter?.translation || ""}
-      ${
-        chapter?.meaning?.en
-          ? " — " + chapter.meaning.en
-          : ""
-      }
     </p>
 
     ${
       chapter?.summary?.en
-        ? `
-          <p class="mt-2 text-sm text-ink/60 max-w-2xl">
-            ${chapter.summary.en}
-          </p>
-        `
-        : ""
+      ? `<p class="mt-2 text-sm text-ink/60 max-w-2xl">
+          ${chapter.summary.en}
+        </p>`
+      : ""
     }
 
   `;
 
-
   const count =
-    chapter?.verses_count || 1;
+  chapter?.verses_count || 1;
 
   versePicker.innerHTML = "";
 
-
-  for (
-    let v = 1;
-    v <= count;
+  for(
+    let v=1;
+    v<=count;
     v++
   ) {
 
     const btn =
-      document.createElement("button");
+    document.createElement("button");
 
-    btn.textContent = v;
+    btn.textContent =
+    v;
 
     btn.className =
-      "verse-pill text-sm w-9 h-9 flex items-center justify-center rounded-full border border-saffron/40 text-ink/70 hover:border-maroon transition-colors";
+    "verse-pill text-sm w-9 h-9 flex items-center justify-center rounded-full border border-saffron/40 text-ink/70 hover:border-maroon transition-colors";
 
-    btn.dataset.verse = v;
+    btn.dataset.verse =
+    v;
 
     btn.addEventListener(
       "click",
-      () =>
-        loadVerse(
-          chapterNumber,
-          v
-        )
+      ()=>loadVerse(
+        chapterNumber,
+        v
+      )
     );
 
     versePicker.appendChild(btn);
 
   }
-
 
   loadVerse(
     chapterNumber,
@@ -1297,29 +2736,24 @@ function selectChapter(chapterNumber) {
 
 
 /* =========================================================
-   ACTIVE VERSE
+   VERSE
 ========================================================= */
 
 function markActiveVersePill(verseNumber) {
 
   versePicker
-    .querySelectorAll(".verse-pill")
-    .forEach((btn) => {
+  .querySelectorAll(".verse-pill")
+  .forEach(btn=>{
 
-      btn.classList.toggle(
-        "active",
-        Number(btn.dataset.verse)
-        === verseNumber
-      );
+    btn.classList.toggle(
+      "active",
+      Number(btn.dataset.verse) === verseNumber
+    );
 
-    });
+  });
 
 }
 
-
-/* =========================================================
-   LOAD VERSE
-========================================================= */
 
 async function loadVerse(
   chapterNumber,
@@ -1327,10 +2761,10 @@ async function loadVerse(
 ) {
 
   state.activeChapter =
-    chapterNumber;
+  chapterNumber;
 
   state.activeVerse =
-    verseNumber;
+  verseNumber;
 
   markActiveChapterRow(
     chapterNumber
@@ -1340,29 +2774,27 @@ async function loadVerse(
     verseNumber
   );
 
+  markChapterExplored(
+    chapterNumber
+  );
 
-  verseContent.innerHTML = `
-
-    <p class="text-ink/40 animate-pulse">
-      Loading verse
-      ${chapterNumber}.${verseNumber}…
-    </p>
-
-  `;
-
+  verseContent.innerHTML =
+  `<p class="text-ink/40 animate-pulse">
+    Loading verse ${chapterNumber}.${verseNumber}…
+  </p>`;
 
   try {
 
     const res =
-      await fetch(
-        `${API_BASE}/slok/${chapterNumber}/${verseNumber}`
-      );
+    await fetch(
+      `${API_BASE}/slok/${chapterNumber}/${verseNumber}`
+    );
 
-    if (!res.ok)
-      throw new Error("network");
+    if(!res.ok)
+      throw new Error();
 
     const data =
-      await res.json();
+    await res.json();
 
     renderVerse(
       chapterNumber,
@@ -1370,11 +2802,7 @@ async function loadVerse(
       data
     );
 
-
-    updateReadingStreak();
-
-
-  } catch (e) {
+  } catch {
 
     verseContent.innerHTML = `
 
@@ -1386,35 +2814,21 @@ async function loadVerse(
         </p>
 
         <button
-          id="retry-verse"
-          class="mt-3 rounded-md border border-maroon px-4 py-2 hover:bg-maroon hover:text-paper transition-colors">
+          onclick="loadVerse(${chapterNumber},${verseNumber})"
+          class="mt-3 rounded-md border border-maroon px-4 py-2">
+
           Try again
+
         </button>
 
       </div>
 
     `;
 
-
-    document
-      .getElementById("retry-verse")
-      .addEventListener(
-        "click",
-        () =>
-          loadVerse(
-            chapterNumber,
-            verseNumber
-          )
-      );
-
   }
 
 }
 
-
-/* =========================================================
-   VERSE DATA
-========================================================= */
 
 function renderVerse(
   chapterNumber,
@@ -1424,78 +2838,46 @@ function renderVerse(
 
   const hindi = {
 
-    text: data.tej?.ht,
+    text:
+    data.tej?.ht ||
+    data.rams?.ht ||
+    data.raman?.ht ||
+    null,
 
-    author: "Swami Tejomayananda"
+    author:
+    data.tej?.ht
+    ? "Swami Tejomayananda"
+    : data.rams?.ht
+    ? "Swami Ramsukhdas"
+    : "Swami Ramanuja"
 
   };
-
-
-  if (!hindi.text) {
-
-    hindi.text =
-      data.rams?.ht ||
-      data.raman?.ht ||
-      null;
-
-    hindi.author =
-      data.rams?.ht
-        ? "Swami Ramsukhdas"
-        : "Swami Ramanuja";
-
-  }
 
 
   let english = {
 
-    text: data.siva?.et,
+    text:
+    data.siva?.et ||
+    data.purohit?.et ||
+    data.adi?.et ||
+    data.gambir?.et ||
+    data.san?.et ||
+    null,
 
-    author: "Swami Sivananda"
+    author:
+    data.siva?.et
+    ? "Swami Sivananda"
+    : data.purohit?.et
+    ? "Shri Purohit Swami"
+    : data.adi?.et
+    ? "Swami Adidevananda"
+    : data.gambir?.et
+    ? "Swami Gambirananda"
+    : data.san?.et
+    ? "Dr. S. Sankaranarayan"
+    : null
 
   };
-
-
-  if (!english.text) {
-
-    const alt = [
-
-      ["purohit", "Shri Purohit Swami"],
-
-      ["adi", "Swami Adidevananda"],
-
-      ["gambir", "Swami Gambirananda"],
-
-      ["san", "Dr. S. Sankaranarayan"]
-
-    ].find(
-      ([key]) =>
-        data[key]?.et
-    );
-
-
-    if (alt) {
-
-      english = {
-
-        text: data[alt[0]].et,
-
-        author: alt[1]
-
-      };
-
-    } else {
-
-      english = {
-
-        text: null,
-
-        author: null
-
-      };
-
-    }
-
-  }
 
 
   state.verseData = {
@@ -1512,126 +2894,13 @@ function renderVerse(
 
   };
 
-
   state.activeTab =
-    "sanskrit";
-
-
-  renderTabs();
-
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHTML(value) {
-
-  if (value == null)
-    return "";
-
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-
-}
-
-
-/* =========================================================
-   BOOKMARKS
-========================================================= */
-
-function getBookmarks() {
-
-  try {
-
-    return JSON.parse(
-      localStorage.getItem(
-        "gitaBookmarks"
-      ) || "[]"
-    );
-
-  } catch {
-
-    return [];
-
-  }
-
-}
-
-
-function isBookmarked(
-  chapter,
-  verse
-) {
-
-  return getBookmarks()
-    .some(
-      x =>
-        x.chapter === chapter &&
-        x.verse === verse
-    );
-
-}
-
-
-function toggleBookmark(
-  chapter,
-  verse
-) {
-
-  let bookmarks =
-    getBookmarks();
-
-  const exists =
-    bookmarks.findIndex(
-      x =>
-        x.chapter === chapter &&
-        x.verse === verse
-    );
-
-
-  if (exists >= 0) {
-
-    bookmarks.splice(
-      exists,
-      1
-    );
-
-  } else {
-
-    bookmarks.push({
-
-      chapter,
-
-      verse,
-
-      savedAt:
-        new Date().toISOString()
-
-    });
-
-  }
-
-
-  localStorage.setItem(
-    "gitaBookmarks",
-    JSON.stringify(bookmarks)
-  );
-
+  "sanskrit";
 
   renderTabs();
 
 }
 
-
-/* =========================================================
-   RENDER TABS
-========================================================= */
 
 function renderTabs() {
 
@@ -1643,87 +2912,43 @@ function renderTabs() {
     english
   } = state.verseData;
 
-
   const tab =
-    state.activeTab;
+  state.activeTab;
 
-
-  const bookmarked =
-    isBookmarked(
-      chapterNumber,
-      verseNumber
-    );
+  const saved =
+  isBookmarked(
+    chapterNumber,
+    verseNumber
+  );
 
 
   const tabsBar = `
 
-    <div
-      class="flex flex-wrap items-center justify-between gap-4 border-b border-saffron/25 mb-5">
+    <div class="flex gap-6 border-b border-saffron/25 mb-5">
 
-      <div
-        class="flex gap-6"
-        role="tablist">
+      <button
+        class="tab-underline pb-2 text-sm font-medium ${tab === "sanskrit" ? "active" : "text-ink/50"}"
+        data-tab="sanskrit">
 
-        <button
-          class="tab-underline pb-2 text-sm font-medium ${
-            tab === "sanskrit"
-              ? "active"
-              : "text-ink/50"
-          }"
-          data-tab="sanskrit">
-          Sanskrit
-        </button>
+        Sanskrit
 
-        <button
-          class="tab-underline pb-2 text-sm font-medium ${
-            tab === "hindi"
-              ? "active"
-              : "text-ink/50"
-          }"
-          data-tab="hindi">
-          Hindi
-        </button>
+      </button>
 
-        <button
-          class="tab-underline pb-2 text-sm font-medium ${
-            tab === "english"
-              ? "active"
-              : "text-ink/50"
-          }"
-          data-tab="english">
-          English
-        </button>
+      <button
+        class="tab-underline pb-2 text-sm font-medium ${tab === "hindi" ? "active" : "text-ink/50"}"
+        data-tab="hindi">
 
-      </div>
+        Hindi
 
+      </button>
 
-      <div class="flex gap-2">
+      <button
+        class="tab-underline pb-2 text-sm font-medium ${tab === "english" ? "active" : "text-ink/50"}"
+        data-tab="english">
 
-        <button
-          id="audioBtn"
-          title="Listen to this verse"
-          class="rounded-full border border-saffron/40 px-3 py-2 text-sm hover:bg-cream">
-          🔊 Listen
-        </button>
+        English
 
-        <button
-          id="bookmarkBtn"
-          title="Save verse"
-          class="rounded-full border border-saffron/40 px-3 py-2 text-sm hover:bg-cream ${
-            bookmarked
-              ? "bookmark-active"
-              : ""
-          }">
-
-          ${
-            bookmarked
-              ? "★ Saved"
-              : "☆ Save"
-          }
-
-        </button>
-
-      </div>
+      </button>
 
     </div>
 
@@ -1733,23 +2958,20 @@ function renderTabs() {
   let body = "";
 
 
-  if (tab === "sanskrit") {
+  if(tab === "sanskrit") {
 
     body = `
 
-      <p
-        class="font-display text-xl text-ink devanagari-line whitespace-pre-line">
-        ${escapeHTML(data.slok || "Not available for this verse.")}
+      <p class="font-display text-xl text-ink devanagari-line whitespace-pre-line">
+        ${data.slok || "Not available for this verse."}
       </p>
 
       ${
         data.transliteration
-          ? `
-            <p class="mt-4 text-ink/60 italic whitespace-pre-line">
-              ${escapeHTML(data.transliteration)}
-            </p>
-          `
-          : ""
+        ? `<p class="mt-4 text-ink/60 italic whitespace-pre-line">
+            ${data.transliteration}
+          </p>`
+        : ""
       }
 
     `;
@@ -1757,103 +2979,128 @@ function renderTabs() {
   }
 
 
-  else if (tab === "hindi") {
+  else if(tab === "hindi") {
 
-    body = hindi.text
+    body =
+    hindi.text
 
-      ? `
+    ? `
 
-        <p
-          class="text-lg leading-relaxed devanagari-line">
-          ${escapeHTML(hindi.text)}
-        </p>
+      <p class="text-lg leading-relaxed devanagari-line">
+        ${hindi.text}
+      </p>
 
-        <p class="mt-3 text-sm text-maroon/70">
-          — ${escapeHTML(hindi.author)}
-        </p>
+      <p class="mt-3 text-sm text-maroon/70">
+        — ${hindi.author}
+      </p>
 
-      `
+    `
 
-      : `
+    : `
 
-        <p class="text-ink/50 italic">
-          A Hindi translation isn't available
-          for this verse yet.
-        </p>
+      <p class="text-ink/50 italic">
+        A Hindi translation isn't available for this verse yet.
+      </p>
 
-      `;
+    `;
 
   }
 
 
   else {
 
-    body = english.text
+    body =
+    english.text
 
-      ? `
+    ? `
 
-        <p class="text-lg leading-relaxed">
-          ${escapeHTML(english.text)}
-        </p>
+      <p class="text-lg leading-relaxed">
+        ${english.text}
+      </p>
 
-        <p class="mt-3 text-sm text-maroon/70">
-          — ${escapeHTML(english.author)}
-        </p>
+      <p class="mt-3 text-sm text-maroon/70">
+        — ${english.author}
+      </p>
 
-      `
+    `
 
-      : `
+    : `
 
-        <p class="text-ink/50 italic">
-          An English translation isn't available
-          for this verse yet.
-        </p>
+      <p class="text-ink/50 italic">
+        An English translation isn't available for this verse yet.
+      </p>
 
-      `;
+    `;
 
   }
 
 
   const count =
-    state.chapters.find(
-      c =>
-        c.chapter_number
-        === chapterNumber
-    )?.verses_count
-    || verseNumber;
+  state.chapters.find(
+    c =>
+    c.chapter_number === chapterNumber
+  )?.verses_count ||
+  verseNumber;
 
 
   const nav = `
 
-    <div
-      class="mt-8 pt-5 border-t border-saffron/20 flex items-center justify-between text-sm">
+    <div class="mt-8 pt-5 border-t border-saffron/20">
 
-      <button
-        id="prev-verse"
-        ${
-          verseNumber <= 1
-            ? "disabled"
-            : ""
-        }
-        class="text-maroon disabled:text-ink/25 disabled:cursor-not-allowed hover:underline">
-        ← Previous
-      </button>
+      <div class="flex flex-wrap gap-3 mb-5">
 
-      <span class="text-ink/40">
-        Chapter ${chapterNumber},
-        Verse ${verseNumber}
-      </span>
+        <button
+          onclick="toggleBookmark(${chapterNumber},${verseNumber})"
+          class="rounded-lg border px-4 py-2 text-sm">
 
-      <button
-        id="next-verse"
-        ${
-          verseNumber >= count
-            ? "disabled"
-            : ""
-        }
-        class="text-maroon disabled:text-ink/25 disabled:cursor-not-allowed hover:underline">
-        Next →
-      </button>
+          ${saved ? "❤️ Saved" : "🤍 Save Verse"}
+
+        </button>
+
+        <button
+          onclick="speakCurrentVerse()"
+          class="rounded-lg border px-4 py-2 text-sm">
+
+          🔊 Listen
+
+        </button>
+
+        <button
+          onclick="stopAudio()"
+          class="rounded-lg border px-4 py-2 text-sm">
+
+          ⏹ Stop
+
+        </button>
+
+      </div>
+
+
+      <div class="flex items-center justify-between text-sm">
+
+        <button
+          id="prev-verse"
+          ${verseNumber <= 1 ? "disabled" : ""}
+          class="text-maroon disabled:text-ink/25 disabled:cursor-not-allowed hover:underline">
+
+          Previous verse
+
+        </button>
+
+        <span class="text-ink/40">
+          Chapter ${chapterNumber}, Verse ${verseNumber}
+        </span>
+
+        <button
+          id="next-verse"
+          ${verseNumber >= count ? "disabled" : ""}
+          class="text-maroon disabled:text-ink/25 disabled:cursor-not-allowed hover:underline">
+
+          Next verse
+
+        </button>
+
+      </div>
 
     </div>
 
@@ -1861,764 +3108,23 @@ function renderTabs() {
 
 
   verseContent.innerHTML =
-    tabsBar + body + nav;
+  tabsBar +
+  body +
+  nav;
 
 
   verseContent
-    .querySelectorAll("[data-tab]")
-    .forEach((btn) => {
+  .querySelectorAll("[data-tab]")
+  .forEach(btn=>{
 
-      btn.addEventListener(
-        "click",
-        () => {
-
-          state.activeTab =
-            btn.dataset.tab;
-
-          renderTabs();
-
-        }
-      );
-
-    });
-
-
-  const prevBtn =
-    document.getElementById(
-      "prev-verse"
-    );
-
-  const nextBtn =
-    document.getElementById(
-      "next-verse"
-    );
-
-
-  if (prevBtn) {
-
-    prevBtn.addEventListener(
+    btn.addEventListener(
       "click",
-      () =>
-        loadVerse(
-          chapterNumber,
-          verseNumber - 1
-        )
-    );
+      ()=>{
 
-  }
+        state.activeTab =
+        btn.dataset.tab;
 
-
-  if (nextBtn) {
-
-    nextBtn.addEventListener(
-      "click",
-      () =>
-        loadVerse(
-          chapterNumber,
-          verseNumber + 1
-        )
-    );
-
-  }
-
-
-  document
-    .getElementById("audioBtn")
-    ?.addEventListener(
-      "click",
-      () =>
-        speakVerse(
-          data.slok,
-          chapterNumber,
-          verseNumber
-        )
-    );
-
-
-  document
-    .getElementById("bookmarkBtn")
-    ?.addEventListener(
-      "click",
-      () =>
-        toggleBookmark(
-          chapterNumber,
-          verseNumber
-        )
-    );
-
-}
-
-
-/* =========================================================
-   AUDIO
-========================================================= */
-
-function speakVerse(
-  text,
-  chapter,
-  verse
-) {
-
-  if (!("speechSynthesis" in window)) {
-
-    alert(
-      "Your browser does not support text-to-speech."
-    );
-
-    return;
-
-  }
-
-
-  speechSynthesis.cancel();
-
-
-  const cleanText =
-    text ||
-    `Bhagavad Gita Chapter ${chapter}, Verse ${verse}`;
-
-
-  const utterance =
-    new SpeechSynthesisUtterance(
-      cleanText
-    );
-
-
-  utterance.lang =
-    "hi-IN";
-
-  utterance.rate =
-    0.78;
-
-  utterance.pitch =
-    1;
-
-
-  speechSynthesis.speak(
-    utterance
-  );
-
-}
-
-
-/* =========================================================
-   SEARCH VERSE
-========================================================= */
-
-searchForm.addEventListener(
-  "submit",
-  (e) => {
-
-    e.preventDefault();
-
-
-    const raw =
-      searchInput.value.trim();
-
-
-    const match =
-      raw.match(
-        /^(\d{1,2})\s*[.:,\s]\s*(\d{1,3})$/
-      );
-
-
-    if (!match) {
-
-      searchHint.textContent =
-        "Enter a chapter and verse number, like 2.47.";
-
-      return;
-
-    }
-
-
-    const chapter =
-      Number(match[1]);
-
-    const verse =
-      Number(match[2]);
-
-
-    if (
-      chapter < 1 ||
-      chapter > 18
-    ) {
-
-      searchHint.textContent =
-        "The Gita has chapters 1 through 18.";
-
-      return;
-
-    }
-
-
-    searchHint.textContent = "";
-
-
-    document
-      .getElementById("library")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
-
-
-    if (
-      state.activeChapter
-      !== chapter
-    ) {
-
-      selectChapter(chapter);
-
-    }
-
-
-    setTimeout(
-      () =>
-        loadVerse(
-          chapter,
-          verse
-        ),
-      150
-    );
-
-  }
-);
-
-
-/* =========================================================
-   DAILY VERSE
-========================================================= */
-
-const dailyVerses = [
-
-  [2, 47],
-
-  [2, 48],
-
-  [2, 50],
-
-  [2, 55],
-
-  [2, 70],
-
-  [3, 19],
-
-  [4, 7],
-
-  [4, 8],
-
-  [6, 5],
-
-  [6, 6],
-
-  [9, 22],
-
-  [12, 13],
-
-  [18, 66]
-
-];
-
-
-function getDailyVerseRef() {
-
-  const today =
-    new Date();
-
-  const day =
-    Math.floor(
-      new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate()
-      ).getTime()
-      / 86400000
-    );
-
-
-  return dailyVerses[
-    Math.abs(day)
-    % dailyVerses.length
-  ];
-
-}
-
-
-async function loadDailyVerse() {
-
-  const box =
-    document.getElementById(
-      "dailyVerseBox"
-    );
-
-
-  const [chapter, verse] =
-    getDailyVerseRef();
-
-
-  try {
-
-    const res =
-      await fetch(
-        `${API_BASE}/slok/${chapter}/${verse}`
-      );
-
-    if (!res.ok)
-      throw new Error();
-
-
-    const data =
-      await res.json();
-
-
-    const first =
-      (data.slok || "")
-      .split("\n")
-      .slice(0, 3)
-      .join("\n");
-
-
-    box.innerHTML = `
-
-      <p class="font-display text-lg devanagari-line whitespace-pre-line">
-        ${escapeHTML(first)}
-      </p>
-
-      <p class="mt-3 text-sm text-maroon/70">
-        Bhagavad Gita ${chapter}.${verse}
-      </p>
-
-    `;
-
-
-    document
-      .getElementById("dailyReadBtn")
-      .onclick = () =>
-        jumpToVerse(
-          chapter,
-          verse
-        );
-
-
-  } catch {
-
-    box.innerHTML = `
-
-      <p class="text-ink/50">
-        Today's verse is temporarily unavailable.
-      </p>
-
-    `;
-
-  }
-
-}
-
-
-/* =========================================================
-   JUMP TO VERSE
-========================================================= */
-
-function jumpToVerse(
-  chapter,
-  verse
-) {
-
-  document
-    .getElementById("library")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
-
-  setTimeout(
-    () => {
-
-      selectChapter(chapter);
-
-      setTimeout(
-        () =>
-          loadVerse(
-            chapter,
-            verse
-          ),
-        150
-      );
-
-    },
-    200
-  );
-
-}
-
-
-/* =========================================================
-   DAILY HERO BUTTON
-========================================================= */
-
-document
-  .getElementById("dailyHeroBtn")
-  .addEventListener(
-    "click",
-    () => {
-
-      document
-        .getElementById(
-          "dailyVerseBox"
-        )
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    }
-  );
-
-
-/* =========================================================
-   READING STREAK
-========================================================= */
-
-function dateKey(date) {
-
-  return date
-    .toISOString()
-    .split("T")[0];
-
-}
-
-
-function updateReadingStreak() {
-
-  const today =
-    dateKey(new Date());
-
-
-  const last =
-    localStorage.getItem(
-      "gitaLastRead"
-    );
-
-
-  let streak =
-    Number(
-      localStorage.getItem(
-        "gitaStreak"
-      ) || 0
-    );
-
-
-  if (last === today) {
-
-    updateStreakUI(streak);
-
-    return;
-
-  }
-
-
-  if (last) {
-
-    const previous =
-      new Date(last);
-
-    const current =
-      new Date(today);
-
-
-    const difference =
-      Math.round(
-        (
-          current -
-          previous
-        ) / 86400000
-      );
-
-
-    if (difference === 1) {
-
-      streak++;
-
-    } else {
-
-      streak = 1;
-
-    }
-
-  } else {
-
-    streak = 1;
-
-  }
-
-
-  localStorage.setItem(
-    "gitaLastRead",
-    today
-  );
-
-
-  localStorage.setItem(
-    "gitaStreak",
-    String(streak)
-  );
-
-
-  updateStreakUI(streak);
-
-}
-
-
-function updateStreakUI(streak) {
-
-  const number =
-    document.getElementById(
-      "streakNumber"
-    );
-
-  const message =
-    document.getElementById(
-      "streakMessage"
-    );
-
-  const bar =
-    document.getElementById(
-      "streakBar"
-    );
-
-
-  number.textContent =
-    streak;
-
-
-  if (streak === 0) {
-
-    message.textContent =
-      "Start reading today to begin your journey.";
-
-  }
-
-  else if (streak === 1) {
-
-    message.textContent =
-      "Beautiful beginning. Come back tomorrow.";
-
-  }
-
-  else if (streak < 7) {
-
-    message.textContent =
-      "Keep going. Your Gita journey has begun.";
-
-  }
-
-  else {
-
-    message.textContent =
-      "Amazing! You are building a strong daily habit.";
-
-  }
-
-
-  const percent =
-    Math.min(
-      streak * 14.28,
-      100
-    );
-
-
-  bar.style.width =
-    percent + "%";
-
-}
-
-
-/* =========================================================
-   WISDOM FINDER
-========================================================= */
-
-const feelingMap = {
-
-  confused: {
-    title: "When the mind is confused",
-    verse: [2, 47],
-    message:
-      "Focus on your action instead of worrying constantly about the result."
-  },
-
-  sad: {
-    title: "When you feel sad",
-    verse: [2, 14],
-    message:
-      "Difficult experiences come and go. Try to remain steady through changing situations."
-  },
-
-  angry: {
-    title: "When anger takes control",
-    verse: [2, 63],
-    message:
-      "The Gita explains how uncontrolled desire can lead to anger and loss of judgment."
-  },
-
-  stressed: {
-    title: "When life feels stressful",
-    verse: [6, 5],
-    message:
-      "The mind can become your friend when you learn to guide and discipline it."
-  },
-
-  fear: {
-    title: "When you feel afraid",
-    verse: [4, 10],
-    message:
-      "Move toward knowledge, devotion and inner steadiness instead of allowing fear to control you."
-  },
-
-  motivation: {
-    title: "When you need motivation",
-    verse: [3, 19],
-    message:
-      "Keep performing your duty sincerely without becoming attached to the result."
-  }
-
-};
-
-
-document
-  .querySelectorAll(".feeling-btn")
-  .forEach((button) => {
-
-    button.addEventListener(
-      "click",
-      async () => {
-
-        document
-          .querySelectorAll(".feeling-btn")
-          .forEach(
-            b =>
-              b.classList.remove(
-                "selected"
-              )
-          );
-
-
-        button.classList.add(
-          "selected"
-        );
-
-
-        const feeling =
-          button.dataset.feeling;
-
-
-        const info =
-          feelingMap[feeling];
-
-
-        const result =
-          document.getElementById(
-            "wisdomResult"
-          );
-
-
-        result.classList.remove(
-          "hidden"
-        );
-
-
-        result.innerHTML = `
-
-          <div class="fade-up">
-
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-
-              <div>
-
-                <p class="text-xs uppercase tracking-widest text-saffronDeep font-semibold">
-                  Krishna's guidance
-                </p>
-
-                <h3 class="font-display text-2xl text-maroon mt-1">
-                  ${info.title}
-                </h3>
-
-              </div>
-
-              <span class="text-sm bg-cream rounded-full px-4 py-2 text-maroon">
-                Gita ${info.verse[0]}.${info.verse[1]}
-              </span>
-
-            </div>
-
-            <p class="mt-5 text-lg leading-relaxed">
-              ${info.message}
-            </p>
-
-            <button
-              id="wisdomReadBtn"
-              class="mt-5 rounded-lg bg-maroon text-paper px-5 py-3 font-medium hover:bg-maroonDeep transition">
-              Read this verse →
-            </button>
-
-            <div
-              id="wisdomVerseText"
-              class="mt-5">
-              Loading verse...
-            </div>
-
-          </div>
-
-        `;
-
-
-        document
-          .getElementById(
-            "wisdomReadBtn"
-          )
-          .onclick = () =>
-            jumpToVerse(
-              info.verse[0],
-              info.verse[1]
-            );
-
-
-        try {
-
-          const res =
-            await fetch(
-              `${API_BASE}/slok/${info.verse[0]}/${info.verse[1]}`
-            );
-
-
-          const data =
-            await res.json();
-
-
-          document
-            .getElementById(
-              "wisdomVerseText"
-            )
-            .innerHTML = `
-
-              <p class="font-display text-lg devanagari-line whitespace-pre-line">
-                ${escapeHTML(
-                  data.slok || ""
-                )}
-              </p>
-
-            `;
-
-        } catch {
-
-          document
-            .getElementById(
-              "wisdomVerseText"
-            )
-            .innerHTML =
-              `<p class="text-ink/50">
-                Verse preview unavailable.
-              </p>`;
-
-        }
+        renderTabs();
 
       }
     );
@@ -2626,965 +3132,245 @@ document
   });
 
 
+  const prev =
+  document.getElementById(
+    "prev-verse"
+  );
+
+  const next =
+  document.getElementById(
+    "next-verse"
+  );
+
+
+  if(prev)
+  prev.addEventListener(
+    "click",
+    ()=>loadVerse(
+      chapterNumber,
+      verseNumber-1
+    )
+  );
+
+
+  if(next)
+  next.addEventListener(
+    "click",
+    ()=>loadVerse(
+      chapterNumber,
+      verseNumber+1
+    )
+  );
+
+}
+
+
+function speakCurrentVerse() {
+
+  if(!state.verseData)
+    return;
+
+  const {
+    data,
+    hindi,
+    english
+  } = state.verseData;
+
+  let text =
+  data.slok ||
+  hindi.text ||
+  english.text ||
+  "";
+
+  const language =
+  state.activeTab === "sanskrit"
+  ? "hi-IN"
+  : state.activeTab === "hindi"
+  ? "hi-IN"
+  : "en-US";
+
+  speakText(
+    text,
+    language
+  );
+
+}
+
+
 /* =========================================================
-   TOPIC SEARCH
+   ORIGINAL VERSE SEARCH
 ========================================================= */
 
-const topicMap = {
+const searchForm =
+document.getElementById(
+  "search-form"
+);
 
-  karma: {
-    title: "Karma / Action",
-    verses: [
-      [2, 47],
-      [3, 19],
-      [3, 35]
-    ]
-  },
+const searchInput =
+document.getElementById(
+  "search-input"
+);
 
-  peace: {
-    title: "Peace",
-    verses: [
-      [2, 70],
-      [5, 29],
-      [12, 13]
-    ]
-  },
-
-  fear: {
-    title: "Fear",
-    verses: [
-      [4, 10],
-      [18, 66]
-    ]
-  },
-
-  anger: {
-    title: "Anger",
-    verses: [
-      [2, 62],
-      [2, 63]
-    ]
-  },
-
-  mind: {
-    title: "Mind",
-    verses: [
-      [6, 5],
-      [6, 6],
-      [6, 26]
-    ]
-  },
-
-  duty: {
-    title: "Duty",
-    verses: [
-      [2, 31],
-      [3, 8],
-      [3, 19]
-    ]
-  },
-
-  success: {
-    title: "Success and Failure",
-    verses: [
-      [2, 48],
-      [2, 50]
-    ]
-  },
-
-  self: {
-    title: "Self",
-    verses: [
-      [2, 20],
-      [6, 5]
-    ]
-  }
-
-};
+const searchHint =
+document.getElementById(
+  "search-hint"
+);
 
 
-function searchTopic() {
+/* Create search box dynamically in hero if original
+   structure was replaced by this version. */
+
+if(!searchForm) {
+
+  const heroButtons =
+  document.querySelector(
+    "header .hero-enter .flex.flex-wrap"
+  );
+
+}
+
+
+/* =========================================================
+   ADD JUMP SEARCH TO HERO
+========================================================= */
+
+(function createJumpSearch(){
+
+  const area =
+  document.querySelector(
+    "header .hero-enter"
+  );
+
+  if(!area) return;
+
+  const wrapper =
+  document.createElement("div");
+
+  wrapper.className =
+  "mt-4 flex flex-col sm:flex-row gap-2";
+
+  wrapper.innerHTML = `
+
+    <input
+      id="jumpInput"
+      type="text"
+      placeholder="Jump to verse — e.g. 2.47"
+      class="flex-1 rounded-lg border border-saffron/40 bg-paper px-4 py-3 text-sm"
+    >
+
+    <button
+      onclick="jumpToVerse()"
+      class="rounded-lg border border-maroon px-5 py-3 text-sm text-maroon">
+
+      Go
+
+    </button>
+
+  `;
+
+  area.appendChild(
+    wrapper
+  );
+
+})();
+
+
+function jumpToVerse() {
 
   const input =
-    document
-      .getElementById(
-        "topicInput"
-      )
-      .value
-      .trim()
-      .toLowerCase();
+  document.getElementById(
+    "jumpInput"
+  );
 
+  const raw =
+  input.value.trim();
 
-  const results =
-    document.getElementById(
-      "topicResults"
+  const match =
+  raw.match(
+    /^(\d{1,2})\s*[.:,\s]\s*(\d{1,3})$/
+  );
+
+  if(!match) {
+
+    alert(
+      "Enter a verse like 2.47"
     );
-
-
-  if (!input) {
-
-    results.innerHTML =
-      `<p class="text-paper/60">
-        Try a topic like karma, peace, fear or mind.
-      </p>`;
 
     return;
 
   }
 
+  const chapter =
+  Number(match[1]);
 
-  let topic = null;
+  const verse =
+  Number(match[2]);
 
+  if(
+    chapter < 1 ||
+    chapter > 18
+  ) {
 
-  for (const key in topicMap) {
-
-    if (
-      input.includes(key)
-    ) {
-
-      topic =
-        topicMap[key];
-
-      break;
-
-    }
-
-  }
-
-
-  if (!topic) {
-
-    results.innerHTML = `
-
-      <div class="bg-white/10 rounded-lg p-4">
-
-        <p>
-          I couldn't find that topic yet.
-        </p>
-
-        <p class="mt-2 text-paper/60">
-          Try:
-          karma · peace · fear · anger · mind · duty · success
-        </p>
-
-      </div>
-
-    `;
+    alert(
+      "Chapter must be between 1 and 18."
+    );
 
     return;
 
   }
-
-
-  results.innerHTML = `
-
-    <div class="bg-white/10 rounded-lg p-4">
-
-      <p class="font-semibold">
-        ${topic.title}
-      </p>
-
-      <div class="flex flex-wrap gap-2 mt-3">
-
-        ${topic.verses
-          .map(
-            ([c, v]) => `
-              <button
-                class="topicVerse bg-paper text-maroon rounded-full px-4 py-2 hover:bg-cream"
-                data-chapter="${c}"
-                data-verse="${v}">
-                Gita ${c}.${v}
-              </button>
-            `
-          )
-          .join("")}
-
-      </div>
-
-    </div>
-
-  `;
-
-
-  results
-    .querySelectorAll(".topicVerse")
-    .forEach((btn) => {
-
-      btn.addEventListener(
-        "click",
-        () =>
-          jumpToVerse(
-            Number(
-              btn.dataset.chapter
-            ),
-            Number(
-              btn.dataset.verse
-            )
-          )
-      );
-
-    });
-
-}
-
-
-document
-  .getElementById(
-    "topicSearchBtn"
-  )
-  .addEventListener(
-    "click",
-    searchTopic
-  );
-
-
-document
-  .getElementById(
-    "topicInput"
-  )
-  .addEventListener(
-    "keydown",
-    (e) => {
-
-      if (e.key === "Enter") {
-
-        e.preventDefault();
-
-        searchTopic();
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   CHAPTER JOURNEY
-========================================================= */
-
-function renderChapterJourney() {
-
-  const container =
-    document.getElementById(
-      "chapterJourney"
-    );
-
-
-  container.innerHTML = "";
-
-
-  state.chapters.forEach(
-    (chapter) => {
-
-      const card =
-        document.createElement(
-          "button"
-        );
-
-
-      card.className =
-        "feature-card bg-paper border border-saffron/30 rounded-xl p-4 text-left";
-
-
-      card.innerHTML = `
-
-        <div class="flex items-center justify-between">
-
-          <span class="text-xs uppercase tracking-wider text-saffronDeep">
-            Chapter
-          </span>
-
-          <span class="w-8 h-8 rounded-full bg-cream flex items-center justify-center text-maroon font-bold">
-            ${chapter.chapter_number}
-          </span>
-
-        </div>
-
-        <div class="mt-3 font-display text-maroon text-sm">
-          ${chapter.name || "Chapter " + chapter.chapter_number}
-        </div>
-
-        <div class="mt-1 text-xs text-ink/50">
-          ${chapter.translation || ""}
-        </div>
-
-      `;
-
-
-      card.addEventListener(
-        "click",
-        () => {
-
-          jumpToChapter(
-            chapter.chapter_number
-          );
-
-        }
-      );
-
-
-      container.appendChild(card);
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   JUMP CHAPTER
-========================================================= */
-
-function jumpToChapter(
-  chapter
-) {
-
-  selectChapter(
-    chapter
-  );
-
 
   document
-    .getElementById(
-      "library"
-    )
-    .scrollIntoView({
-      behavior: "smooth"
-    });
+  .getElementById("library")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
 
-}
-
-
-/* =========================================================
-   ASK KRISHNA
-========================================================= */
-
-function getKrishnaAnswer(
-  question
-) {
-
-  const q =
-    question.toLowerCase();
-
-
-  if (
-    q.includes("anger") ||
-    q.includes("angry")
+  if(
+    state.activeChapter !== chapter
   ) {
 
-    return {
-      text:
-        "The Gita teaches that uncontrolled desire can lead to anger and confusion. Pause before reacting, observe your mind, and choose your action carefully.",
-      verse: [2, 62]
-    };
-
-  }
-
-
-  if (
-    q.includes("fear") ||
-    q.includes("afraid")
-  ) {
-
-    return {
-      text:
-        "Fear becomes easier to handle when the mind is steady and you focus on your duty rather than imagining every possible outcome.",
-      verse: [4, 10]
-    };
-
-  }
-
-
-  if (
-    q.includes("stress") ||
-    q.includes("tension") ||
-    q.includes("stressed")
-  ) {
-
-    return {
-      text:
-        "Do your present duty sincerely. Do not allow constant worry about the future to take away your attention from the present action.",
-      verse: [2, 47]
-    };
-
-  }
-
-
-  if (
-    q.includes("success") ||
-    q.includes("failure")
-  ) {
-
-    return {
-      text:
-        "The Gita encourages balance in success and failure. Give your best effort without allowing the result to control your inner peace.",
-      verse: [2, 48]
-    };
-
-  }
-
-
-  if (
-    q.includes("career") ||
-    q.includes("job") ||
-    q.includes("work")
-  ) {
-
-    return {
-      text:
-        "Focus on learning your duty and performing it sincerely. Consistent action is more useful than constantly worrying about the final result.",
-      verse: [3, 19]
-    };
-
-  }
-
-
-  if (
-    q.includes("peace") ||
-    q.includes("peaceful")
-  ) {
-
-    return {
-      text:
-        "Peace grows when the mind becomes less controlled by endless desires and becomes steady within itself.",
-      verse: [2, 70]
-    };
-
-  }
-
-
-  if (
-    q.includes("confused") ||
-    q.includes("confusion")
-  ) {
-
-    return {
-      text:
-        "When confused, slow down and understand your duty. Clear action becomes easier when the mind is not controlled by fear of the result.",
-      verse: [2, 47]
-    };
-
-  }
-
-
-  return {
-    text:
-      "The Gita repeatedly teaches self-discipline, sincere action, balance and wisdom. Begin with your present duty and take one clear step at a time.",
-    verse: [2, 47]
-  };
-
-}
-
-
-document
-  .getElementById(
-    "askKrishnaBtn"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      const input =
-        document.getElementById(
-          "krishnaQuestion"
-        );
-
-
-      const question =
-        input.value.trim();
-
-
-      if (!question) {
-
-        input.focus();
-
-        return;
-
-      }
-
-
-      const answer =
-        getKrishnaAnswer(
-          question
-        );
-
-
-      const box =
-        document.getElementById(
-          "krishnaAnswer"
-        );
-
-
-      box.classList.remove(
-        "hidden"
-      );
-
-
-      box.innerHTML = `
-
-        <p class="text-xs uppercase tracking-widest text-saffronDeep font-semibold">
-          Krishna's guidance
-        </p>
-
-        <p class="mt-3 text-lg leading-relaxed">
-          ${answer.text}
-        </p>
-
-        <div class="mt-4 flex flex-wrap items-center gap-3">
-
-          <span class="text-sm text-maroon font-semibold">
-            Related verse:
-            Gita ${answer.verse[0]}.${answer.verse[1]}
-          </span>
-
-          <button
-            id="krishnaVerseBtn"
-            class="text-sm bg-maroon text-paper rounded-lg px-4 py-2 hover:bg-maroonDeep">
-            Read verse
-          </button>
-
-        </div>
-
-        <p class="mt-4 text-xs text-ink/40">
-          This feature provides topic-based guidance from selected Gita verses.
-        </p>
-
-      `;
-
-
-      document
-        .getElementById(
-          "krishnaVerseBtn"
-        )
-        .onclick = () =>
-          jumpToVerse(
-            answer.verse[0],
-            answer.verse[1]
-          );
-
-    }
-  );
-
-
-document
-  .getElementById(
-    "krishnaQuestion"
-  )
-  .addEventListener(
-    "keydown",
-    (e) => {
-
-      if (e.key === "Enter") {
-
-        e.preventDefault();
-
-        document
-          .getElementById(
-            "askKrishnaBtn"
-          )
-          .click();
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   QUIZ
-========================================================= */
-
-const quizQuestions = [
-
-  {
-    question:
-      "How many chapters are there in the Bhagavad Gita?",
-
-    options: [
-      "12",
-      "15",
-      "18",
-      "20"
-    ],
-
-    answer: 2
-  },
-
-
-  {
-    question:
-      "Who gives the teachings of the Gita to Arjuna?",
-
-    options: [
-      "Bhishma",
-      "Krishna",
-      "Drona",
-      "Yudhishthira"
-    ],
-
-    answer: 1
-  },
-
-
-  {
-    question:
-      "The Bhagavad Gita is part of which epic?",
-
-    options: [
-      "Ramayana",
-      "Mahabharata",
-      "Rigveda",
-      "Upanishads"
-    ],
-
-    answer: 1
-  },
-
-
-  {
-    question:
-      "Which chapter contains the famous teaching about action and its results?",
-
-    options: [
-      "Chapter 2",
-      "Chapter 5",
-      "Chapter 10",
-      "Chapter 18"
-    ],
-
-    answer: 0
-  },
-
-
-  {
-    question:
-      "What does the Gita encourage regarding one's duty?",
-
-    options: [
-      "Avoid all work",
-      "Perform duty sincerely",
-      "Always seek praise",
-      "Fear failure"
-    ],
-
-    answer: 1
-  }
-
-];
-
-
-let quizIndex = 0;
-
-let quizScore = 0;
-
-let quizAnswered = false;
-
-
-function renderQuiz() {
-
-  const card =
-    document.getElementById(
-      "quizCard"
+    selectChapter(
+      chapter
     );
 
+    setTimeout(
+      ()=>loadVerse(
+        chapter,
+        verse
+      ),
+      300
+    );
 
-  if (
-    quizIndex >=
-    quizQuestions.length
-  ) {
+  } else {
 
-    card.innerHTML = `
-
-      <div class="text-center py-6">
-
-        <div class="text-5xl">
-          🏆
-        </div>
-
-        <h3 class="font-display text-3xl text-maroon mt-4">
-          Quiz Complete!
-        </h3>
-
-        <p class="mt-3 text-xl">
-          Your score:
-          <strong>
-            ${quizScore}/${quizQuestions.length}
-          </strong>
-        </p>
-
-        <p class="mt-3 text-ink/60">
-          Keep reading the Gita and test yourself again.
-        </p>
-
-        <button
-          id="restartQuiz"
-          class="mt-6 rounded-lg bg-maroon text-paper px-6 py-3 font-semibold">
-          Try Again
-        </button>
-
-      </div>
-
-    `;
-
-
-    document
-      .getElementById(
-        "restartQuiz"
-      )
-      .onclick = () => {
-
-        quizIndex = 0;
-
-        quizScore = 0;
-
-        quizAnswered = false;
-
-        renderQuiz();
-
-      };
-
-
-    return;
+    loadVerse(
+      chapter,
+      verse
+    );
 
   }
-
-
-  const q =
-    quizQuestions[
-      quizIndex
-    ];
-
-
-  quizAnswered = false;
-
-
-  card.innerHTML = `
-
-    <div class="flex items-center justify-between">
-
-      <span class="text-sm text-saffronDeep font-semibold">
-        Question ${quizIndex + 1}
-        / ${quizQuestions.length}
-      </span>
-
-      <span class="text-sm text-ink/50">
-        Score: ${quizScore}
-      </span>
-
-    </div>
-
-
-    <h3 class="font-display text-2xl text-maroon mt-5">
-      ${q.question}
-    </h3>
-
-
-    <div
-      id="quizOptions"
-      class="mt-6 grid gap-3">
-
-      ${q.options
-        .map(
-          (option, index) => `
-
-            <button
-              class="quiz-option text-left border border-saffron/30 rounded-xl px-5 py-4"
-              data-index="${index}">
-
-              <span class="font-semibold text-maroon mr-2">
-                ${String.fromCharCode(
-                  65 + index
-                )}.
-              </span>
-
-              ${option}
-
-            </button>
-
-          `
-        )
-        .join("")}
-
-    </div>
-
-
-    <div
-      id="quizFeedback"
-      class="mt-5">
-    </div>
-
-  `;
-
-
-  document
-    .querySelectorAll(
-      ".quiz-option"
-    )
-    .forEach((button) => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          if (quizAnswered)
-            return;
-
-
-          quizAnswered = true;
-
-
-          const selected =
-            Number(
-              button.dataset.index
-            );
-
-
-          const all =
-            document
-              .querySelectorAll(
-                ".quiz-option"
-              );
-
-
-          all.forEach(
-            (b) =>
-              b.disabled = true
-          );
-
-
-          if (
-            selected ===
-            q.answer
-          ) {
-
-            quizScore++;
-
-            button.classList.add(
-              "correct"
-            );
-
-
-            document
-              .getElementById(
-                "quizFeedback"
-              )
-              .innerHTML = `
-
-                <p class="text-green-700 font-semibold">
-                  ✓ Correct!
-                </p>
-
-                <button
-                  id="nextQuiz"
-                  class="mt-4 rounded-lg bg-maroon text-paper px-5 py-2">
-                  Next Question →
-                </button>
-
-              `;
-
-          } else {
-
-            button.classList.add(
-              "wrong"
-            );
-
-
-            all[
-              q.answer
-            ].classList.add(
-              "correct"
-            );
-
-
-            document
-              .getElementById(
-                "quizFeedback"
-              )
-              .innerHTML = `
-
-                <p class="text-red-700 font-semibold">
-                  Not quite. The correct answer is highlighted.
-                </p>
-
-                <button
-                  id="nextQuiz"
-                  class="mt-4 rounded-lg bg-maroon text-paper px-5 py-2">
-                  Next Question →
-                </button>
-
-              `;
-
-          }
-
-
-          document
-            .getElementById(
-              "nextQuiz"
-            )
-            .onclick = () => {
-
-              quizIndex++;
-
-              renderQuiz();
-
-            };
-
-        }
-      );
-
-    });
 
 }
 
 
-renderQuiz();
-
-
 /* =========================================================
-   INITIALIZATION
+   BOOT
 ========================================================= */
 
-initHeroRays();
+loadTheme();
 
-loadHeroVerse();
+updateStreak();
 
-loadChapters();
+updateDashboard();
+
+renderFavorites();
+
+loadChallenge();
 
 loadDailyVerse();
 
-updateStreakUI(
-  Number(
-    localStorage.getItem(
-      "gitaStreak"
-    ) || 0
-  )
-);
+loadChapters();
 
-
-/* =========================================================
-   KEYBOARD SHORTCUT
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  (e) => {
-
-    if (
-      e.key === "/" &&
-      document.activeElement.tagName
-      !== "INPUT"
-    ) {
-
-      e.preventDefault();
-
-      searchInput.focus();
-
-    }
-
-  }
-);
-
-})();
 
 </script>
 
